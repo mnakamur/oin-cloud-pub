@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "auth": {
+      "pdfvueampprj4dde32ec": [
+        "read",
+        "update"
+      ]
+    },
+    "storage": {
+      "amplifyvuepdf": [
+        "create",
+        "read",
+        "update"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

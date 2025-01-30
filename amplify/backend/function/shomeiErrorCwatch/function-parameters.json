@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "auth": {
+      "pdfvueampprj4dde32ec": [
+        "read"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

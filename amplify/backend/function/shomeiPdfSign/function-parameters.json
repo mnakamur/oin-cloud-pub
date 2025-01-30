@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "api": {
+      "pdfvueampprj": [
+        "Query",
+        "Mutation",
+        "Subscription"
+      ]
+    },
+    "function": {
+      "shomeiFlow": [
+        "read",
+        "update"
+      ],
+      "shomeiMailBounce": [
+        "read",
+        "update"
+      ]
+    },
+    "storage": {
+      "amplifyvuepdf": [
+        "read",
+        "update"
+      ],
+      "bunsyo:@model(appsync)": [
+        "read",
+        "update"
+      ],
+      "Shomei:@model(appsync)": [
+        "read",
+        "update"
+      ],
+      "Contents:@model(appsync)": [
+        "read",
+        "update"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

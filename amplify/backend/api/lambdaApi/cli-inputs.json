@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "paths": {
+    "/shomeiErrorCwatch": {
+      "name": "/shomeiErrorCwatch",
+      "lambdaFunction": "shomeiErrorCwatch",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/shomeiPdfSign": {
+      "name": "/shomeiPdfSign",
+      "lambdaFunction": "shomeiPdfSign",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/shomeiReject": {
+      "name": "/shomeiReject",
+      "lambdaFunction": "shomeiReject",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/shomeiFlow": {
+      "name": "/shomeiFlow",
+      "lambdaFunction": "shomeiFlow",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

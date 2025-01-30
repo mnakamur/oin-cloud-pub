@@ -1,0 +1,17 @@
+{
+  "resourceName": "amplifyvuepdf",
+  "policyUUID": "eb41aa88",
+  "bucketName": "pdfvueamplify",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "S3Trigger50282eae",
+  "groupAccess": {}
+}

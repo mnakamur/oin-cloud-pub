@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "api": {
+      "pdfvueampprj": [
+        "Query",
+        "Mutation"
+      ]
+    },
+    "auth": {
+      "pdfvueampprj4dde32ec": [
+        "read",
+        "update",
+        "delete"
+      ]
+    },
+    "storage": {
+      "amplifyvuepdf": [
+        "read",
+        "update",
+        "delete"
+      ],
+      "bunsyo:@model(appsync)": [
+        "read",
+        "update",
+        "delete"
+      ],
+      "Shomei:@model(appsync)": [
+        "read",
+        "update",
+        "delete"
+      ],
+      "Contents:@model(appsync)": [
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

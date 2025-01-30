@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "api": {
+      "pdfvueampprj": [
+        "Query",
+        "Mutation"
+      ]
+    },
+    "auth": {
+      "pdfvueampprj4dde32ec": [
+        "read",
+        "update"
+      ]
+    },
+    "storage": {
+      "bunsyo:@model(appsync)": [
+        "read",
+        "update"
+      ],
+      "Shomei:@model(appsync)": [
+        "read",
+        "update"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

@@ -1,0 +1,185 @@
+import { readAsArrayBuffer,readAsPDF,readAsDataURL,readAsText } from "./asyncReader.js"
+import { fetchFont, getAsset } from "./prepareAssets"
+import { noop } from "./helper.js"
+import { textToPdf } from "./makeTextPDF"
+//add 20240802
+export async function addPDF(file,allObjects,docData) {
+    try {
+        const pdf = await readAsPDF(file);
+        //const { pages, numPages } = docData.value; 
+        docData.value.pdfFile = file;
+        docData.value.numPages = pdf.numPages;
+        file.name && (docData.value.docName = file.name.split('.').slice(0, -1).join('.'));
+        //{docData.value.docName = file.name.split('.').slice(0, -1).join('.');}
+            //docData.value.pages.splice(0, docData.value.pages.length);
+        docData.value.pages = Array(pdf.numPages).fill().map((_, i) => pdf.getPage(i + 1));
+        //docData.value.pages = Array.from({ length: numPages }, (_, i) => pdf.getPage(i + 1));
+
+        allObjects.value.splice(0, allObjects.value.length);
+        const pagesViewports = await Promise.all(Array(pdf.numPages).fill().map(async(_, i) =>
+            { const page = await pdf.getPage(i + 1); // ページは1から始まる
+              const viewport = page.getViewport({ scale: 1 });
+              return {width:viewport.width,height:viewport.height} // 各ページの幅を返す
+          }))
+        let scale =1.0
+        const maxWidth = Math.max(...pagesViewports.map(vp => vp.width));
+        maxWidth*1.5 < window.innerWidth? scale=1.2 : scale=1.0;  
+        //Math.max(...pagesWidths)*1.5 < window.innerWidth? scale=1.2 : scale=1.0; 
+        console.log('pagesViewports=',pagesViewports,window.innerWidth,scale,maxWidth);  
+        /*pdf.getPage().map(async(pageIndex) => { 
+            const eachPage = await pdf.getPage(1);
+            const viewport = eachPage.getViewport({ scale: 1 });
+            console.log('viewport.width=',viewport.width)
+        //}) */   
+        docData.value.pagesScale = Array(pdf.numPages).fill(scale);
+        docData.value.pagesViewports = pagesViewports
+        return pdf
+    } catch (e) {
+        console.log('Failed to add pdf. Please try again.', e);
+        return false
+    }
+}
+export async function  verifyInPdf(input_pdf){
+    const inpdf =  await readAsText(input_pdf);
+    const chk_sig = inpdf.indexOf('/Sig')
+    const chk_acroform = inpdf.indexOf('/AcroForm')
+    const trailerStart = inpdf.lastIndexOf('trailer');
+    const trailer = inpdf.slice(trailerStart, inpdf.length - 6);
+    
+    let chk_trailer = -1
+    
+    if (
+        trailer.includes('Root') &&
+        trailer.includes('Info') &&
+        trailer.includes('startxref')
+      ) {  chk_trailer = 1  }
+        
+    const chk_xref = inpdf.indexOf('xref');
+ 
+    const maxSizeInBytes = 5 * 1024 * 1024;
+    const chk_maxSize = input_pdf.size > maxSizeInBytes ? 1 : -1;
+
+    //console.log('filesize=',input_pdf.size)
+
+    //const chk_objstm = inpdf.indexOf('/ObjStm')
+    //const chk_stmxref = inpdf.indexOf('/XRef')
+    //const chk_stmxref = -1
+    //console.log(chk_sig, chk_acroform, chk_objstm, chk_stmxref)
+    //if ([chk_sig, chk_acroform, chk_objstm, chk_stmxref].some(val => val !== -1)) {
+    if ([chk_sig, chk_acroform,chk_maxSize].some(val => val !== -1)) {    
+        return false;
+      }
+     if ([chk_xref, chk_trailer].some(val => val === -1)) {
+        return false;
+    }  
+    
+     return true
+}
+
+export async function save(pdfFile, objects, name) {
+    
+    const PDFLib = await getAsset("PDFLib")
+    const download = await getAsset("download")
+    
+    let pdfDoc
+    try {
+        pdfDoc = await PDFLib.PDFDocument.load(await readAsArrayBuffer(pdfFile))
+    } catch (e) {
+        this.$notify.error("Failed to load PDF while saving, please try again.")
+        throw e
+    }
+    
+    const pagesProcesses = pdfDoc.getPages().map(async (page, pageIndex) => {
+        const pageObjects = objects.filter((o) => o.page == pageIndex)
+        // 'y' starts from bottom in PDFLib, use this to calculate y
+        const pageHeight = page.getHeight()
+        const embedProcesses = pageObjects.map(async (object) => {
+            
+            if (object.type === "image") {
+                let { file, x, y, width, height } = object
+                let img
+                try {
+                    if (file.type === "image/jpeg") {
+                        img = await pdfDoc.embedJpg(await readAsArrayBuffer(file))
+                    } else {
+                        img = await pdfDoc.embedPng(await readAsArrayBuffer(file))
+                    }
+                    
+                    return () =>
+                        page.drawImage(img, {
+                            x,
+                            y: pageHeight - y - height,
+                            width,
+                            height,
+                            opacity: 1.0,
+                        })
+                } catch (e) {
+                    this.$notify.error("Failed to embed image.")
+                    return noop
+                }
+            } else if (object.type === "txt") {
+                let { x, y, lines, lineHeight, size, fontFamily, width } = object
+                const height = size * lineHeight * lines.length
+                const font = await fetchFont(fontFamily)
+                //console.log('textto_input=',lines,size,lineHeight,width,height,fontFamily)
+                const [textPage] = await pdfDoc.embedPdf(
+                    await textToPdf({
+                        lines,
+                        fontSize: size,
+                        lineHeight,
+                        width,
+                        height,
+                        font: font.buffer || fontFamily, // built-in font family
+                        dy: font.correction(size, lineHeight),
+                    })
+                )
+                //console.log('textPAge=',textPage)
+                return () =>
+                    page.drawPage(textPage, {
+                        width,
+                        height,
+                        x,
+                        y: pageHeight - y - height,
+                    })
+            } else if (object.type === "drawing") {
+                let { x, y, path, scale } = object
+                const { pushGraphicsState, setLineCap, popGraphicsState, setLineJoin, LineCapStyle, LineJoinStyle } = PDFLib
+                return () => {
+                    page.pushOperators(pushGraphicsState(), setLineCap(LineCapStyle.Round), setLineJoin(LineJoinStyle.Round))
+                    page.drawSvgPath(path, {
+                        borderWidth: 5,
+                        scale,
+                        x,
+                        y: pageHeight - y,
+                    })
+                    page.pushOperators(popGraphicsState())
+                }
+            }
+        })
+        // embed objects in order
+        const drawProcesses = await Promise.all(embedProcesses)
+        drawProcesses.forEach((p) => p())
+    })
+    
+    await Promise.all(pagesProcesses)
+    try {
+        const pdfBytes = await pdfDoc.save()
+        download(pdfBytes, name, "application/pdf")
+        return await pdfDoc.saveAsBase64({ dataUri: true })
+    } catch (e) {
+        this.$notify.error("Failed to save PDF.")
+        throw e
+    }
+}
+
+export async function pdfDownload(pdfFile,bunsyoName) {
+    const base64Data = await readAsDataURL(pdfFile)
+    const link = document.createElement('a');
+    link.href = base64Data;
+    link.download = bunsyoName +'.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+ }
+
+ 

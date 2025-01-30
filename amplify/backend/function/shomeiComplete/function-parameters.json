@@ -1,0 +1,49 @@
+{
+  "permissions": {
+    "api": {
+      "pdfvueampprj": [
+        "Query",
+        "Mutation"
+      ]
+    },
+    "auth": {
+      "pdfvueampprj4dde32ec": [
+        "read",
+        "update"
+      ]
+    },
+    "function": {
+      "S3Trigger50282eae": [
+        "read",
+        "update"
+      ],
+      "shomeiFlow": [
+        "read"
+      ]
+    },
+    "storage": {
+      "amplifyvuepdf": [
+        "read"
+      ],
+      "bunsyo:@model(appsync)": [
+        "read",
+        "update"
+      ],
+      "Shomei:@model(appsync)": [
+        "read",
+        "update"
+      ]
+    }
+  },
+  "lambdaLayers": [],
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "iamAccessKeyId",
+      "environmentVariableName": "IAM_ACCESS_KEY_ID"
+    },
+    {
+      "cloudFormationParameterName": "iamSecretAccessKey",
+      "environmentVariableName": "IAM_SECRET_ACCESS_KEY"
+    }
+  ]
+}

@@ -1,0 +1,694 @@
+{
+  "api": {
+    "lambdaApi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "shomeiErrorCwatch"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "shomeiPdfSign"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "shomeiReject"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "shomeiFlow"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    },
+    "pdfvueampprj": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "pdfvueampprj4dde32ec"
+        }
+      ],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authpdfvueampprj4dde32ec"
+              }
+            }
+          ],
+          "defaultAuthentication": {
+            "apiKeyConfig": {
+              "apiKeyExpirationDate": "2025-06-13T05:05:18.174Z",
+              "apiKeyExpirationDays": 365,
+              "description": " da2-lo3if5n3l5dh3lcucmf3cbqbne"
+            },
+            "authenticationType": "API_KEY"
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  },
+  "auth": {
+    "pdfvueampprj4dde32ec": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    }
+  },
+  "function": {
+    "S3Trigger50282eae": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "pdfS3Move": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "pdfvueampprj"
+        },
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "pdfvueampprj4dde32ec"
+        },
+        {
+          "attributes": [
+            "BucketName"
+          ],
+          "category": "storage",
+          "resourceName": "amplifyvuepdf"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "pdfvueampprjshomeiFlowLayer": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer"
+    },
+    "shomeiComplete": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "pdfvueampprj"
+        },
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "pdfvueampprj4dde32ec"
+        },
+        {
+          "attributes": [
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "S3Trigger50282eae"
+        },
+        {
+          "attributes": [
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "shomeiFlow"
+        },
+        {
+          "attributes": [
+            "BucketName"
+          ],
+          "category": "storage",
+          "resourceName": "amplifyvuepdf"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "shomeiDocTStamp": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "pdfvueampprj"
+        },
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "pdfvueampprj4dde32ec"
+        },
+        {
+          "attributes": [
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "S3Trigger50282eae"
+        },
+        {
+          "attributes": [
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "shomeiFlow"
+        },
+        {
+          "attributes": [
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "shomeiPdfSign"
+        },
+        {
+          "attributes": [
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "shomeiComplete"
+        },
+        {
+          "attributes": [
+            "BucketName"
+          ],
+          "category": "storage",
+          "resourceName": "amplifyvuepdf"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "shomeiErrorCwatch": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "pdfvueampprj4dde32ec"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "shomeiFlow": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "pdfvueampprj"
+        },
+        {
+          "attributes": [
+            "BucketName"
+          ],
+          "category": "storage",
+          "resourceName": "amplifyvuepdf"
+        },
+        {
+          "attributes": [
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "pdfvueampprjshomeiFlowLayer"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "shomeiMailBounce": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "pdfvueampprj"
+        },
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "pdfvueampprj4dde32ec"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "shomeiMakeX509": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "pdfvueampprj4dde32ec"
+        },
+        {
+          "attributes": [
+            "BucketName"
+          ],
+          "category": "storage",
+          "resourceName": "amplifyvuepdf"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "shomeiPdfDel": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "pdfvueampprj"
+        },
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "pdfvueampprj4dde32ec"
+        },
+        {
+          "attributes": [
+            "BucketName"
+          ],
+          "category": "storage",
+          "resourceName": "amplifyvuepdf"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "shomeiPdfSign": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "pdfvueampprj"
+        },
+        {
+          "attributes": [
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "shomeiFlow"
+        },
+        {
+          "attributes": [
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "shomeiMailBounce"
+        },
+        {
+          "attributes": [
+            "BucketName"
+          ],
+          "category": "storage",
+          "resourceName": "amplifyvuepdf"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "shomeiReject": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "pdfvueampprj"
+        },
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "pdfvueampprj4dde32ec"
+        },
+        {
+          "attributes": [
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "S3Trigger50282eae"
+        },
+        {
+          "attributes": [
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "shomeiComplete"
+        },
+        {
+          "attributes": [
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "shomeiFlow"
+        },
+        {
+          "attributes": [
+            "BucketName"
+          ],
+          "category": "storage",
+          "resourceName": "amplifyvuepdf"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_S3Trigger50282eae_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "S3Trigger50282eae"
+        }
+      ]
+    },
+    "AMPLIFY_function_S3Trigger50282eae_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "S3Trigger50282eae"
+        }
+      ]
+    },
+    "AMPLIFY_function_pdfS3Move_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "pdfS3Move"
+        }
+      ]
+    },
+    "AMPLIFY_function_pdfS3Move_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "pdfS3Move"
+        }
+      ]
+    },
+    "AMPLIFY_function_pdfvueampprjshomeiFlowLayer_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "pdfvueampprjshomeiFlowLayer"
+        }
+      ]
+    },
+    "AMPLIFY_function_pdfvueampprjshomeiFlowLayer_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "pdfvueampprjshomeiFlowLayer"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiComplete_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiComplete"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiComplete_iamAccessKeyId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiComplete"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiComplete_iamSecretAccessKey": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiComplete"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiComplete_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiComplete"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiDocTStamp_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiDocTStamp"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiDocTStamp_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiDocTStamp"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiErrorCwatch_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiErrorCwatch"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiErrorCwatch_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiErrorCwatch"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiFlow_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiFlow"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiFlow_iamAccessKeyId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiFlow"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiFlow_iamSecretAccessKey": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiFlow"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiFlow_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiFlow"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiMailBounce_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiMailBounce"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiMailBounce_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiMailBounce"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiMakeX509_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiMakeX509"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiMakeX509_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiMakeX509"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiPdfDel_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiPdfDel"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiPdfDel_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiPdfDel"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiPdfSign_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiPdfSign"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiPdfSign_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiPdfSign"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiReject_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiReject"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiReject_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiReject"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "amplifyvuepdf": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "LambdaExecutionRole"
+          ],
+          "category": "function",
+          "resourceName": "S3Trigger50282eae"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
+    }
+  }
+}

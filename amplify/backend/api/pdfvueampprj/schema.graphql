@@ -1,0 +1,75 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY {
+  globalAuthRule: AuthRule = { allow: public }
+} # FOR TESTING ONLY!
+type bunsyo @model {
+  pdfId: ID!
+  createUser: ID!
+    @index(
+      name: "createUser-index"
+      sortKeyFields: ["createdAt"]
+      queryField: "bunsyoByCreateUser"
+    )
+  userName: String
+  userEmail: String
+  docName: String
+  bunStatus: String
+  pageNum: Int
+  shomeiLength: Int
+  docRef:String
+  docRefExp:String
+  identityId:String
+  createdAt: String!
+  shomei: [Shomei] @hasMany
+}
+
+type Shomei @model {
+  id: ID!
+  seq: Int
+  bunsyoShomeiId: ID!
+    @index(
+      name: "gsi-bunsyo.shomei"
+      sortKeyFields: ["seq"]
+      queryField: "shomeiByBunsyo"
+    )
+  name: String!
+  mail: String
+  shomeiNaiyo: String
+  shomeiStatus: String
+  certificate: ID
+  timeStampCert: ID
+  shomeiTime: String
+  commentToAuthor: String
+  commentToSigner: String
+  messageId:String
+  content: [Contents] @hasMany
+}
+
+type Contents @model {
+  pdfId: ID!
+  id: ID!
+  seq: String!
+  type: String!
+  page: Int
+  width: Float
+  height: Float
+  x: Float
+  Y: Float
+  scale: Float
+  pageHeight: Float
+  size: Int
+  file: String
+  fileType: String
+  S3imgKey: ID
+  fontFamily: String
+  lineHeight: Float
+  lineCount: Int
+  lines: [String]
+  text: String
+  objComment: String
+  date: String
+  path: [String]
+  shomeiContentId: ID!
+    @index(name: "gsi-Shomei.content", queryField: "contentsByShomei")
+}

@@ -1,0 +1,45 @@
+{
+  "permissions": {
+    "api": {
+      "pdfvueampprj": [
+        "Query",
+        "Mutation"
+      ]
+    },
+    "auth": {
+      "pdfvueampprj4dde32ec": [
+        "read",
+        "update"
+      ]
+    },
+    "function": {
+      "S3Trigger50282eae": [
+        "read",
+        "update"
+      ],
+      "shomeiComplete": [
+        "read",
+        "update"
+      ],
+      "shomeiFlow": [
+        "read",
+        "update"
+      ]
+    },
+    "storage": {
+      "amplifyvuepdf": [
+        "read",
+        "update"
+      ],
+      "bunsyo:@model(appsync)": [
+        "read",
+        "update"
+      ],
+      "Shomei:@model(appsync)": [
+        "read",
+        "update"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

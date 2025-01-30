@@ -1,0 +1,43 @@
+{
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "pdfvueampprjshomeiFlowLayer",
+      "env": "dev",
+      "version": "Always choose latest version",
+      "isLatestVersionSelected": true
+    }
+  ],
+  "permissions": {
+    "api": {
+      "pdfvueampprj": [
+        "Query",
+        "Mutation"
+      ]
+    },
+    "storage": {
+      "amplifyvuepdf": [
+        "read",
+        "update"
+      ],
+      "bunsyo:@model(appsync)": [
+        "read",
+        "update"
+      ],
+      "Shomei:@model(appsync)": [
+        "read",
+        "update"
+      ]
+    }
+  },
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "iamAccessKeyId",
+      "environmentVariableName": "IAM_ACCESS_KEY_ID"
+    },
+    {
+      "cloudFormationParameterName": "iamSecretAccessKey",
+      "environmentVariableName": "IAM_SECRET_ACCESS_KEY"
+    }
+  ]
+}
