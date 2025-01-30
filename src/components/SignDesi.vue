@@ -17,7 +17,7 @@
   const client = generateClient();
 
   let pdf = '';
-  const imgDummy = 'assets/imgDummy.png';
+  const imgDummy = '\imgDummy.png';
 
   const props = defineProps({
     data: {
