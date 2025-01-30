@@ -242,7 +242,7 @@
     position: absolute;
   }
   #toolbarFirst {
-    background-image: url('..\..\public\secondaryToolbarButton-firstPage.svg');
+    background-image: url('/secondaryToolbarButton-firstPage.svg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 30px;
@@ -250,7 +250,7 @@
     border-color: #f2f2f2;
   }
   #toolbarLast {
-    background-image: url('..\..\public\secondaryToolbarButton-lastPage.svg');
+    background-image: url('/secondaryToolbarButton-lastPage.svg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 30px;
@@ -258,7 +258,7 @@
     border-color: #f2f2f2;
   }
   #toolbarzoomIn {
-    background-image: url('..\..\public\toolbarButton-zoomIn.svg');
+    background-image: url('/toolbarButton-zoomIn.svg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 30px;
@@ -266,7 +266,7 @@
     border-color: #f2f2f2;
   }
   #toolbarzoomOut {
-    background-image: url('..\..\public\toolbarButton-zoomOut.svg');
+    background-image: url('/toolbarButton-zoomOut.svg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 30px;
@@ -274,7 +274,7 @@
     border-color: #f2f2f2;
   }
   #toolbaraddText {
-    background-image: url('..\..\public\toolbarButton-editorFreeText.svg');
+    background-image: url('/toolbarButton-editorFreeText.svg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 30px;
@@ -282,7 +282,7 @@
     border-color: #f2f2f2;
   }
   #toolbaraddDate {
-    background-image: url('..\..\public\toolbarButton-Calender.svg');
+    background-image: url('/toolbarButton-Calender.svg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 30px;
@@ -290,7 +290,7 @@
     border-color: #f2f2f2;
   }
   #toolbaraddDraw {
-    background-image: url('..\..\public\toolbarButton-editorInk.svg');
+    background-image: url('/toolbarButton-editorInk.svg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 30px;
@@ -298,7 +298,7 @@
     border-color: #f2f2f2;
   }
   #toolbaraddStamp {
-    background-image: url('..\..\public\toolbarButton-editorStamp2.svg');
+    background-image: url('/toolbarButton-editorStamp2.svg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 30px;
@@ -306,7 +306,7 @@
     border-color: #f2f2f2;
   }
   #toolbardownLoad {
-    background-image: url('..\..\public\gv-toolbarButton-download.svg');
+    background-image: url('/gv-toolbarButton-download.svg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 30px;
