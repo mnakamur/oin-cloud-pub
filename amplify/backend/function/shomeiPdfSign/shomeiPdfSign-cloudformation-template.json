@@ -42,6 +42,15 @@
     },
     "contactinfoMail": {
       "Type": "String"
+    },
+    "kmsArn": {
+      "Type": "String"
+    },
+    "dumX509": {
+      "Type": "String"
+    },
+    "dumPrkey": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -195,6 +204,15 @@
             },
             "CONTACTINFO_MAIL": {
               "Ref": "contactinfoMail"
+            },
+            "KMS_ARN": {
+              "Ref": "kmsArn"
+            },
+            "DUM_X509": {
+              "Ref": "dumX509"
+            },
+            "DUM_PRKEY": {
+              "Ref": "dumPrkey"
             }
           }
         },

@@ -561,6 +561,14 @@
         }
       ]
     },
+    "AMPLIFY_function_shomeiDocTStamp_tstheadre": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiDocTStamp"
+        }
+      ]
+    },
     "AMPLIFY_function_shomeiErrorCwatch_deploymentBucketName": {
       "usedBy": [
         {
@@ -690,6 +698,30 @@
       ]
     },
     "AMPLIFY_function_shomeiPdfSign_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiPdfSign"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiPdfSign_dumPrkey": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiPdfSign"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiPdfSign_dumX509": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiPdfSign"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiPdfSign_kmsArn": {
       "usedBy": [
         {
           "category": "function",

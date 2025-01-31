@@ -51,6 +51,9 @@
     "storageamplifyvuepdfBucketName": {
       "Type": "String",
       "Default": "storageamplifyvuepdfBucketName"
+    },
+    "tstheadre": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -184,6 +187,9 @@
                   }
                 ]
               ]
+            },
+            "TSTHEADRE": {
+              "Ref": "tstheadre"
             }
           }
         },

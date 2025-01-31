@@ -41,6 +41,18 @@
     {
       "cloudFormationParameterName": "contactinfoMail",
       "environmentVariableName": "CONTACTINFO_MAIL"
+    },
+    {
+      "cloudFormationParameterName": "kmsArn",
+      "environmentVariableName": "KMS_ARN"
+    },
+    {
+      "cloudFormationParameterName": "dumX509",
+      "environmentVariableName": "DUM_X509"
+    },
+    {
+      "cloudFormationParameterName": "dumPrkey",
+      "environmentVariableName": "DUM_PRKEY"
     }
   ]
 }
