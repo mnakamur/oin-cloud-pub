@@ -497,6 +497,14 @@
         }
       ]
     },
+    "AMPLIFY_function_shomeiComplete_contactinfoMail": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiComplete"
+        }
+      ]
+    },
     "AMPLIFY_function_shomeiComplete_deploymentBucketName": {
       "usedBy": [
         {
@@ -601,6 +609,14 @@
         }
       ]
     },
+    "AMPLIFY_function_shomeiMailBounce_contactinfoMail": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiMailBounce"
+        }
+      ]
+    },
     "AMPLIFY_function_shomeiMailBounce_deploymentBucketName": {
       "usedBy": [
         {
@@ -649,6 +665,14 @@
         }
       ]
     },
+    "AMPLIFY_function_shomeiPdfSign_contactinfoMail": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiPdfSign"
+        }
+      ]
+    },
     "AMPLIFY_function_shomeiPdfSign_deploymentBucketName": {
       "usedBy": [
         {
@@ -662,6 +686,14 @@
         {
           "category": "function",
           "resourceName": "shomeiPdfSign"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiReject_contactinfoMail": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiReject"
         }
       ]
     },

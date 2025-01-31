@@ -20,23 +20,19 @@
     }
   },
   "Resources": {
-    "LambdaLayerVersionc50be2a7": {
+    "LambdaLayerVersion54a962d8": {
       "Type": "AWS::Lambda::LayerVersion",
       "Properties": {
-        "CompatibleRuntimes": {
-          "Ref": "runtimes"
-        },
+        "CompatibleRuntimes": [
+          "nodejs18.x"
+        ],
         "Content": {
           "S3Bucket": {
             "Ref": "deploymentBucketName"
           },
-          "S3Key": {
-            "Ref": "s3Key"
-          }
+          "S3Key": "amplify-builds/pdfvueampprjshomeiFlowLayer-LambdaLayerVersion54a962d8-build.zip"
         },
-        "Description": {
-          "Ref": "description"
-        },
+        "Description": "Updated layer version 2025-01-31T01:34:54.186Z",
         "LayerName": {
           "Fn::Sub": [
             "pdfvueampprjshomeiFlowLayer-${env}",
@@ -51,13 +47,11 @@
       "DeletionPolicy": "Delete",
       "UpdateReplacePolicy": "Retain"
     },
-    "LambdaLayerPermissionPrivatec50be2a7": {
+    "LambdaLayerPermissionPrivate54a962d8": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
         "Action": "lambda:GetLayerVersion",
-        "LayerVersionArn": {
-          "Ref": "LambdaLayerVersionc50be2a7"
-        },
+        "LayerVersionArn": "arn:aws:lambda:ap-northeast-1:912202596347:layer:pdfvueampprjshomeiFlowLayer-dev:7",
         "Principal": {
           "Ref": "AWS::AccountId"
         }
@@ -67,7 +61,7 @@
   "Outputs": {
     "Arn": {
       "Value": {
-        "Ref": "LambdaLayerVersionc50be2a7"
+        "Ref": "LambdaLayerVersion54a962d8"
       }
     }
   }

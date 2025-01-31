@@ -31,6 +31,9 @@
     "authpdfvueampprj4dde32ecUserPoolId": {
       "Type": "String",
       "Default": "authpdfvueampprj4dde32ecUserPoolId"
+    },
+    "contactinfoMail": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -149,6 +152,9 @@
                   }
                 ]
               ]
+            },
+            "CONTACTINFO_MAIL": {
+              "Ref": "contactinfoMail"
             }
           }
         },

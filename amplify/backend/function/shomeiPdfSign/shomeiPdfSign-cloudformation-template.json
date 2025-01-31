@@ -39,6 +39,9 @@
     "functionshomeiMailBounceName": {
       "Type": "String",
       "Default": "functionshomeiMailBounceName"
+    },
+    "contactinfoMail": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -189,6 +192,9 @@
             },
             "FUNCTION_SHOMEIMAILBOUNCE_NAME": {
               "Ref": "functionshomeiMailBounceName"
+            },
+            "CONTACTINFO_MAIL": {
+              "Ref": "contactinfoMail"
             }
           }
         },
