@@ -561,6 +561,14 @@
         }
       ]
     },
+    "AMPLIFY_function_shomeiFlow_contactinfoMail": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiFlow"
+        }
+      ]
+    },
     "AMPLIFY_function_shomeiFlow_deploymentBucketName": {
       "usedBy": [
         {

@@ -38,6 +38,10 @@
     {
       "cloudFormationParameterName": "iamSecretAccessKey",
       "environmentVariableName": "IAM_SECRET_ACCESS_KEY"
+    },
+    {
+      "cloudFormationParameterName": "contactinfoMail",
+      "environmentVariableName": "CONTACTINFO_MAIL"
     }
   ]
 }

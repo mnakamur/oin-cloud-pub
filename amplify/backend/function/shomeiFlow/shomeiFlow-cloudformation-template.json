@@ -45,6 +45,9 @@
     },
     "iamSecretAccessKey": {
       "Type": "String"
+    },
+    "contactinfoMail": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -172,6 +175,9 @@
             },
             "IAM_SECRET_ACCESS_KEY": {
               "Ref": "iamSecretAccessKey"
+            },
+            "CONTACTINFO_MAIL": {
+              "Ref": "contactinfoMail"
             }
           }
         },
