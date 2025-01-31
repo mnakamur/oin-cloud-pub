@@ -104,7 +104,8 @@
 
   function deleteObject(objectId) {
     allObjects.value = allObjects.value.filter(
-      (object) => object.page == this.selectedPageIndex && object.id !== objectId
+      //(object) => object.page == this.selectedPageIndex && object.id !== objectId
+      (object) => object.id !== objectId
     );
   }
   function showModal() {
