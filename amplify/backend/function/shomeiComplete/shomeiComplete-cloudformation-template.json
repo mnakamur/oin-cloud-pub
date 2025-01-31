@@ -52,6 +52,9 @@
     },
     "contactinfoMail": {
       "Type": "String"
+    },
+    "siteUrl": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -188,6 +191,9 @@
             },
             "CONTACTINFO_MAIL": {
               "Ref": "contactinfoMail"
+            },
+            "SITE_URL": {
+              "Ref": "siteUrl"
             }
           }
         },

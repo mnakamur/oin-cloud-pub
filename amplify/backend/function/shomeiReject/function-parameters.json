@@ -46,6 +46,10 @@
     {
       "cloudFormationParameterName": "contactinfoMail",
       "environmentVariableName": "CONTACTINFO_MAIL"
+    },
+    {
+      "cloudFormationParameterName": "siteUrl",
+      "environmentVariableName": "SITE_URL"
     }
   ]
 }

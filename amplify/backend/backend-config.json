@@ -537,6 +537,14 @@
         }
       ]
     },
+    "AMPLIFY_function_shomeiComplete_siteUrl": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiComplete"
+        }
+      ]
+    },
     "AMPLIFY_function_shomeiDocTStamp_deploymentBucketName": {
       "usedBy": [
         {
@@ -602,6 +610,14 @@
       ]
     },
     "AMPLIFY_function_shomeiFlow_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiFlow"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiFlow_siteUrl": {
       "usedBy": [
         {
           "category": "function",
@@ -706,6 +722,14 @@
       ]
     },
     "AMPLIFY_function_shomeiReject_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiReject"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiReject_siteUrl": {
       "usedBy": [
         {
           "category": "function",

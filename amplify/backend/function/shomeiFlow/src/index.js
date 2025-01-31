@@ -34,7 +34,8 @@ const s3 = new S3({
 });
 
 const bucket = process.env.STORAGE_AMPLIFYVUEPDF_BUCKETNAME;
-const linkUrl = 'http://localhost:5173';
+//const linkUrl = 'http://localhost:5173';
+const linkUrl = process.env.SITE_URL;
 const resHeader = {
   'Content-Type': 'application/json',
   'Access-Control-Allow-Headers': 'Content-Type',

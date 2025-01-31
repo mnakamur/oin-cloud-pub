@@ -34,7 +34,8 @@ const resHeader = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'OPTIONS,POST',
 };
-const linkUrl = 'http://localhost:5173';
+//const linkUrl = 'http://localhost:5173';
+const linkUrl = process.env.SITE_URL;
 exports.handler = async (event) => {
   if (event.httpMethod === 'OPTIONS') {
     return preflightResponse();
