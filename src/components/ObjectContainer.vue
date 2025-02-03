@@ -316,7 +316,7 @@
   }
 
   function handleBlur_signdo() {
-    console.log('handlebur');
+    console.log('handlebur', textarea.value);
     const textContent = textarea.value;
     const lines = textarea.value.split('\n');
     const lineLengths = lines.map((line) => line.length);
@@ -354,7 +354,7 @@
   }
 
   function handleKeydown(event) {
-    console.log('handleKeyDown');
+    console.log('handleKeyDown', event.target);
     const textarea = event.target;
     const lines = textarea.value.split('\n');
     if (event.key === 'Enter' && lines.length >= props.lineCount) {
