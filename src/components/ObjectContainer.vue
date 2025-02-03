@@ -607,6 +607,7 @@
           height: `${height}px`,
         }"
         @blur="handleBlur_signdo"
+        @focusout="handleBlur_signdo"
         @keydown.enter="handleKeydown"
         v-model="textarea"
       >

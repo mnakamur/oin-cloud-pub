@@ -292,7 +292,7 @@
       </div>
     </div>
     <div v-if="scaleSize !== 0" class="docArea" ref="docArea">
-      <h4>文書名：{{ data.docName }} <br />署名者：{{ data.shomeiName }}</h4>
+      <h4>文書名：{{ data.docName }} <br />署名者：{{ data.shomeiName }} 様</h4>
       <div
         v-for="(page, pageIndex) in docData.pages"
         :key="pageIndex"
