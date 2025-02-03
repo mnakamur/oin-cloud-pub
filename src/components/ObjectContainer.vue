@@ -354,6 +354,7 @@
   }
 
   function handleKeydown(event) {
+    console.log('handleKeyDown');
     const textarea = event.target;
     const lines = textarea.value.split('\n');
     if (event.key === 'Enter' && lines.length >= props.lineCount) {
