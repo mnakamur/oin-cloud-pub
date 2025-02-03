@@ -242,6 +242,8 @@ function updateObject(objectId, payload) {
             return object
         }
     })
+    console.log('allobject=',allObjects.value)
+    console.log('selectedPageIndex=',selectedPageIndex.value)
 }
 
 async function shomeiDone(){
@@ -271,8 +273,8 @@ errorToLambda(createUserAttr.userId,docData.value.pdfFileId,'Signdo','shomeiDone
   
   let lambdaRes = await invokeLambda('shomeiPdfSign',{ pdfId: docData.value.pdfFileId,routeNo:routeNo.value,createUserId:createUserAttr.userId,s3folder:s3folder[1] })
   if (lambdaRes.statusCode && lambdaRes.statusCode < 400) {
-    　 showMessage('署名依頼を投げました。','info') 
-       docData.value.docName += ":署名済み"   
+    　 showMessage('署名依頼をしました','info') 
+       docData.value.docName += ":署名依頼済み"   
        shomeiButtonStatus.value = false;
        return true
       } else {

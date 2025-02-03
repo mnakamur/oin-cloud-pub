@@ -316,6 +316,7 @@
   }
 
   function handleBlur_signdo() {
+    console.log('handlebur');
     const textContent = textarea.value;
     const lines = textarea.value.split('\n');
     const lineLengths = lines.map((line) => line.length);

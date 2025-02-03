@@ -73,7 +73,9 @@
     <h4>
       作成者：{{ createUser }} <button class="profile" @click="profile">プロフィール編集</button>
     </h4>
+    <router-link to="/" tag="button" class="button-class">作成画面に戻る</router-link>
   </div>
+
   <div>
     <h4>文書一覧</h4>
     <signstatus
@@ -83,6 +85,7 @@
       @close="closeSignstatus"
       style="margin-top: -5%"
     />
+
     <pdfmanage v-if="pdfmanageShow" :data="pdfMData" @close="closepdfmanage" />
     <table class="table">
       <thead>
@@ -114,7 +117,6 @@
     <div v-if="infoVisible" :class="{ 'info-popup': infoVisible, 'error-popup': errorVisible }">
       {{ infoMessage }}
     </div>
-    <router-link to="/" tag="button" class="button-class">作成画面に戻る</router-link>
   </div>
 </template>
 
@@ -208,7 +210,7 @@
     border: 1px solid #ff0000;
   }
   .button-class {
-    display: inline-block;
+    display: inline-flex;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -219,6 +221,7 @@
     border: none;
     border-radius: 4px;
     transition: background-color 0.3s ease;
+    float: right;
   }
   .button-class:hover {
     background-color: #0056b3;

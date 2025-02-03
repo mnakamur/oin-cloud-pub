@@ -397,7 +397,7 @@
         画面クローズ
       </button>
       <div v-if="processStep == 1 || signdesi.shomeiGo" class="buttonQuit">
-        <button type="button" @click="closeWindow">途中で辞めて画面をクローズする</button>
+        <button type="button" @click="closeWindow">画面をクローズする</button>
       </div>
 
       <div v-if="infoVisible" :class="{ 'info-popup': infoVisible, 'error-popup': errorVisible }">
