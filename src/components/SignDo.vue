@@ -242,7 +242,7 @@ function updateObject(objectId, payload) {
             return object
         }
     })
-    console.log('allobject=',allObjects.value)
+    console.log('allobject=',allObjects.value,payload)
     console.log('selectedPageIndex=',selectedPageIndex.value)
 }
 

@@ -321,7 +321,7 @@
     const lines = textarea.value.split('\n');
     const lineLengths = lines.map((line) => line.length);
     const maxCharLength = Math.max(...lineLengths);
-
+    console.log('lines=', lines);
     const fontsize = Math.floor(Math.min(props.width / maxCharLength, props.height / lines.length));
 
     emit('update', {
