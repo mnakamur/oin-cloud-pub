@@ -316,12 +316,11 @@
   }
 
   function handleBlur_signdo() {
-    console.log('handlebur', textarea.value);
     const textContent = textarea.value;
     const lines = textarea.value.split('\n');
     const lineLengths = lines.map((line) => line.length);
     const maxCharLength = Math.max(...lineLengths);
-    console.log('lines=', lines);
+
     const fontsize = Math.floor(Math.min(props.width / maxCharLength, props.height / lines.length));
 
     emit('update', {
@@ -354,7 +353,7 @@
   }
 
   function handleKeydown(event) {
-    console.log('handleKeyDown', event.target);
+    console.log('handleKeyDown', event.target, event.target.value);
     const textarea = event.target;
     const lines = textarea.value.split('\n');
     if (event.key === 'Enter' && lines.length >= props.lineCount) {
@@ -750,7 +749,7 @@
     width: 300px;
     margin-top: 3px;
     display: inline-flex;
-    position: absolute;
+    /*position: absolute;*/
     bottom: -45px;
   }
   .comment-area-is {

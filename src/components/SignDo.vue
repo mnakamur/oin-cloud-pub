@@ -244,7 +244,7 @@ function updateObject(objectId, payload) {
             return object
         }
     })
-    console.log('allobject=',allObjects.value,payload)
+    
 }
 
 async function shomeiDone(){

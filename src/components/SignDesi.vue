@@ -202,7 +202,7 @@
       page: selectedPageIndex.value,
       scale: scaleSize.value,
       lineCount: 1,
-      objComment: text,
+      //objComment: text,
       status: 'entrying',
     };
     allObjects.value.push(dateObject);
@@ -400,7 +400,7 @@
   }
   .selected-page {
     width: 100%;
-    overflow: hidden;
+    overflow: scroll;
   }
   .each-page {
     position: relative;
