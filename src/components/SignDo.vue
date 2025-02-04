@@ -235,6 +235,8 @@ function selectPage(index) {
 }
 function updateObject(objectId, payload) {
     allObjects.value = allObjects.value.map((object) => {
+      console.log('objectID=',object.id,objectId) 
+      console.log('pageID=',object.page,selectedPageIndex.value) 
         if (object.page == selectedPageIndex.value && object.id === objectId) {
 
             return { ...object, ...payload }
@@ -243,7 +245,6 @@ function updateObject(objectId, payload) {
         }
     })
     console.log('allobject=',allObjects.value,payload)
-    console.log('selectedPageIndex=',selectedPageIndex.value)
 }
 
 async function shomeiDone(){
