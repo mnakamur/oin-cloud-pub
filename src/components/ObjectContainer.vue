@@ -749,7 +749,7 @@
     width: 300px;
     margin-top: 3px;
     display: inline-flex;
-    /*position: absolute;*/
+    position: absolute;
     bottom: -45px;
   }
   .comment-area-is {
