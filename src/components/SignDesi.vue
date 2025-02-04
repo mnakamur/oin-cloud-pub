@@ -94,7 +94,8 @@
   }
   function updateObject(objectId, payload) {
     allObjects.value = allObjects.value.map((object) => {
-      if (object.page == selectedPageIndex.value && object.id === objectId) {
+      //if (object.page == selectedPageIndex.value && object.id === objectId) {
+      if (object.id === objectId) {
         return { ...object, ...payload };
       } else {
         return object;
