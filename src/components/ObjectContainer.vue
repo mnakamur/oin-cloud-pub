@@ -353,9 +353,8 @@
   }
 
   function handleKeydown(event) {
-    console.log('handleKeyDown', event.target, event.target.value);
-    const textarea = event.target;
-    const lines = textarea.value.split('\n');
+    const textarea = event.target.value;
+    const lines = textarea.split('\n');
     if (event.key === 'Enter' && lines.length >= props.lineCount) {
       event.preventDefault();
     }
