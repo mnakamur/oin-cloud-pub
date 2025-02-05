@@ -529,7 +529,6 @@
         name="comments"
         maxlength="40"
         rows="1"
-        value="署名日付を入力してください"
         @blur="handleBlur_C"
         :readonly="commentIn === 'readonly'"
       />
