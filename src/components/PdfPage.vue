@@ -180,7 +180,7 @@
                 ></button>
               </div>
               <button
-                v-if="origin !== 'pdfup'"
+                v-if="origin == 'pdfmanage'"
                 id="toolbardownLoad"
                 class="toolbarButton"
                 title="文書をダウンロードします"
