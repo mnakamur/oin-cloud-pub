@@ -553,7 +553,31 @@
         }
       ]
     },
+    "AMPLIFY_function_shomeiDocTStamp_dumPrkey": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiDocTStamp"
+        }
+      ]
+    },
     "AMPLIFY_function_shomeiDocTStamp_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiDocTStamp"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiDocTStamp_tsaPem": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiDocTStamp"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiDocTStamp_tsaUrl": {
       "usedBy": [
         {
           "category": "function",
@@ -657,6 +681,30 @@
         }
       ]
     },
+    "AMPLIFY_function_shomeiMakeX509_certvalidityDate": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiMakeX509"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiMakeX509_commonName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiMakeX509"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiMakeX509_countryName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiMakeX509"
+        }
+      ]
+    },
     "AMPLIFY_function_shomeiMakeX509_deploymentBucketName": {
       "usedBy": [
         {
@@ -665,7 +713,79 @@
         }
       ]
     },
+    "AMPLIFY_function_shomeiMakeX509_dns1Name": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiMakeX509"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiMakeX509_dns2Name": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiMakeX509"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiMakeX509_kmsArn": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiMakeX509"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiMakeX509_localityName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiMakeX509"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiMakeX509_orgName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiMakeX509"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiMakeX509_ouName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiMakeX509"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiMakeX509_outDer": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiMakeX509"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiMakeX509_outPem": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiMakeX509"
+        }
+      ]
+    },
     "AMPLIFY_function_shomeiMakeX509_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "shomeiMakeX509"
+        }
+      ]
+    },
+    "AMPLIFY_function_shomeiMakeX509_stName": {
       "usedBy": [
         {
           "category": "function",

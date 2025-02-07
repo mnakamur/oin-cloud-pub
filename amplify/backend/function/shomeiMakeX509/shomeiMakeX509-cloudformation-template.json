@@ -23,6 +23,42 @@
     "storageamplifyvuepdfBucketName": {
       "Type": "String",
       "Default": "storageamplifyvuepdfBucketName"
+    },
+    "kmsArn": {
+      "Type": "String"
+    },
+    "certvalidityDate": {
+      "Type": "String"
+    },
+    "commonName": {
+      "Type": "String"
+    },
+    "countryName": {
+      "Type": "String"
+    },
+    "stName": {
+      "Type": "String"
+    },
+    "localityName": {
+      "Type": "String"
+    },
+    "orgName": {
+      "Type": "String"
+    },
+    "ouName": {
+      "Type": "String"
+    },
+    "dns1Name": {
+      "Type": "String"
+    },
+    "dns2Name": {
+      "Type": "String"
+    },
+    "outDer": {
+      "Type": "String"
+    },
+    "outPem": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -83,6 +119,42 @@
             },
             "STORAGE_AMPLIFYVUEPDF_BUCKETNAME": {
               "Ref": "storageamplifyvuepdfBucketName"
+            },
+            "KMS_ARN": {
+              "Ref": "kmsArn"
+            },
+            "CERTVALIDITY_DATE": {
+              "Ref": "certvalidityDate"
+            },
+            "COMMON_NAME": {
+              "Ref": "commonName"
+            },
+            "COUNTRY_NAME": {
+              "Ref": "countryName"
+            },
+            "ST_NAME": {
+              "Ref": "stName"
+            },
+            "LOCALITY_NAME": {
+              "Ref": "localityName"
+            },
+            "ORG_NAME": {
+              "Ref": "orgName"
+            },
+            "OU_NAME": {
+              "Ref": "ouName"
+            },
+            "DNS1_NAME": {
+              "Ref": "dns1Name"
+            },
+            "DNS2_NAME": {
+              "Ref": "dns2Name"
+            },
+            "OUT_DER": {
+              "Ref": "outDer"
+            },
+            "OUT_PEM": {
+              "Ref": "outPem"
             }
           }
         },

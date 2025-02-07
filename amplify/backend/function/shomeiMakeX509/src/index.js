@@ -8,9 +8,10 @@ Amplify Params - DO NOT EDIT */
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
+// make certificate through AWS KMS
 const { KMSClient, SignCommand, GetPublicKeyCommand } = require('@aws-sdk/client-kms');
 const kmsclient = new KMSClient({ region: 'ap-northeast-1' });
-const { S3Client, GetObjectCommand, PutObjectCommand } = require('@aws-sdk/client-s3');
+const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
 const s3client = new S3Client({ region: 'ap-northeast-1' });
 const forge = require('node-forge');
 var asn1 = forge.asn1;
@@ -28,7 +29,7 @@ exports.handler = async (event, context) => {
   cert = pki.createCertificate();
   console.log(1);
   var pubkey_params = {
-    KeyId: 'arn:aws:kms:ap-northeast-1:912202596347:key/1ac3fe5c-52e5-40ea-88f1-20452a3c88b7', // The key ARN of the asymmetric KMS key.
+    KeyId: process.env.KMS_ARN,
   };
   try {
     const commandGetPub = new GetPublicKeyCommand(pubkey_params);
@@ -45,34 +46,34 @@ exports.handler = async (event, context) => {
   cert.signatureOid = '1.2.840.113549.1.1.11';
   cert.siginfo.algorithmOid = cert.signatureOid;
   cert.serialNumber = '01';
-  cert.validity.notBefore = new Date('2024-11-30T17:24:00');
-  cert.validity.notAfter = new Date('2024-11-30T17:24:00');
+  cert.validity.notBefore = new Date(process.env.CERTVALIDITY_DATE);
+  cert.validity.notAfter = new Date(process.env.CERTVALIDITY_DATE);
 
   cert.validity.notAfter.setFullYear(cert.validity.notBefore.getFullYear() + 5);
   var attrs = [
     {
       name: 'commonName',
-      value: 'www.market-interface.co.jp',
+      value: process.env.COMMON_NAME,
     },
     {
       name: 'countryName',
-      value: 'JP',
+      value: process.env.COUNTRY_NAME,
     },
     {
       shortName: 'ST',
-      value: 'Tokyo',
+      value: process.env.ST_NAME,
     },
     {
       name: 'localityName',
-      value: 'Minato-ku',
+      value: process.env.LOCALITY_NAME,
     },
     {
       name: 'organizationName',
-      value: 'market-interface',
+      value: process.env.ORG_NAME,
     },
     {
       shortName: 'OU',
-      value: 'market-interface',
+      value: process.env.OU_NAME,
     },
   ];
   cert.setSubject(attrs);
@@ -88,11 +89,11 @@ exports.handler = async (event, context) => {
       altNames: [
         {
           type: 2, // URI
-          value: 'www.market-interface.co.jp',
+          value: process.env.DNS1_NAME,
         },
         {
           type: 2, // IP 2はDNS
-          value: 'OuinCloud',
+          value: process.env.DNS2_NAME,
         },
       ],
     },
@@ -119,7 +120,7 @@ exports.handler = async (event, context) => {
   }
   //md→sig */
   var sig_params = {
-    KeyId: 'arn:aws:kms:ap-northeast-1:912202596347:key/1ac3fe5c-52e5-40ea-88f1-20452a3c88b7', // The asymmetric KMS key to be used to generate the digital signature. This example uses an alias of the KMS key.
+    KeyId: process.env.KMS_ARN,
     Message: Write_bytes,
     MessageType: 'DIGEST', // Indicates whether the message is RAW or a DIGEST.
     SigningAlgorithm: 'RSASSA_PKCS1_V1_5_SHA_256', //
@@ -136,7 +137,7 @@ exports.handler = async (event, context) => {
   var asn1Cert = pki.certificateToAsn1(cert);
   var pemWK = pki.certificateToPem(cert);
   var X509Der = forge.asn1.toDer(asn1Cert).getBytes();
-  //string項目をbufferに移し替えています。
+
   let Write_bytes_Der = new Uint8Array(X509Der.length);
   for (let i = 0; i < X509Der.length; i++) {
     Write_bytes_Der[i] = X509Der.charCodeAt(i);
@@ -144,7 +145,7 @@ exports.handler = async (event, context) => {
   //DER file output
   var params_der = {
     Bucket: bucket,
-    Key: 'fixed/singtox509_v2024.der',
+    Key: process.env.OUT_DER,
     Body: Write_bytes_Der,
   };
   try {
@@ -156,7 +157,7 @@ exports.handler = async (event, context) => {
   //pem file output
   var params_pem = {
     Bucket: bucket,
-    Key: 'fixed/signtox509_v2024.pem',
+    Key: process.env.OUT_PEM,
     Body: pemWK,
   };
   try {

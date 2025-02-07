@@ -35,7 +35,7 @@ const plainAddPlaceholder = require('node-signpdf/src/helpers/plainAddPlaceholde
 const SignPdfforKms = require('node-signpdf/src/signpdfforKms');
 
 const bucket = process.env.STORAGE_AMPLIFYVUEPDF_BUCKETNAME;
-const url = 'https://freetsa.org/tsr';
+const url = process.env.TSA_URL;
 const tsaOptions = {
   method: 'POST',
   headers: {
@@ -53,8 +53,8 @@ exports.handler = async (event) => {
     const fileName = `${s3folder}${createUserId}/${pdfId}`;
 
     const pdfBuffer = await getS3Object(bucket, fileName);
-    const dummyPRkey = await getS3Object(bucket, 'fixed/dummyPRkey.key');
-    const pemWK = await getS3Object(bucket, 'fixed/freetsacacert.pem');
+    const dummyPRkey = await getS3Object(bucket, process.env.DUM_PRKEY);
+    const pemWK = await getS3Object(bucket, process.env.TSA_PEM);
 
     let pdfWithPlaceholder = await plainAddPlaceholder({
       pdfBuffer,

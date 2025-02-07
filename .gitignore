@@ -64,6 +64,7 @@ amplifytools.xcconfig
 amplify/backend/function/shomeiPdfSign/src/index_backup.js
 jizentest.js
 
+
 #eslintPrittier系
 .eslintignore
 .prettierignore

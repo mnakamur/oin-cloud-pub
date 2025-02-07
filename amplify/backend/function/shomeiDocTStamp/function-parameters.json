@@ -52,6 +52,18 @@
     {
       "cloudFormationParameterName": "tstheadre",
       "environmentVariableName": "TSTHEADRE"
+    },
+    {
+      "cloudFormationParameterName": "dumPrkey",
+      "environmentVariableName": "DUM_PRKEY"
+    },
+    {
+      "cloudFormationParameterName": "tsaPem",
+      "environmentVariableName": "TSA_PEM"
+    },
+    {
+      "cloudFormationParameterName": "tsaUrl",
+      "environmentVariableName": "TSA_URL"
     }
   ]
 }

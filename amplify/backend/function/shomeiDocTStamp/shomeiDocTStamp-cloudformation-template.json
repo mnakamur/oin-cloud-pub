@@ -54,6 +54,15 @@
     },
     "tstheadre": {
       "Type": "String"
+    },
+    "dumPrkey": {
+      "Type": "String"
+    },
+    "tsaPem": {
+      "Type": "String"
+    },
+    "tsaUrl": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -190,6 +199,15 @@
             },
             "TSTHEADRE": {
               "Ref": "tstheadre"
+            },
+            "DUM_PRKEY": {
+              "Ref": "dumPrkey"
+            },
+            "TSA_PEM": {
+              "Ref": "tsaPem"
+            },
+            "TSA_URL": {
+              "Ref": "tsaUrl"
             }
           }
         },
