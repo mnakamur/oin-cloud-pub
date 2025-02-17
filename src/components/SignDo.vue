@@ -70,7 +70,7 @@ async function fetchBunsyo(){
   
   try {
   const shomeiData = await fetchShomei() 
-  
+  console.log('shomeiData=',shomeiData,routeNo.value)
   if (shomeiData != false)
   { 
     shomeisyaName.value = shomeiData.name;
@@ -85,7 +85,8 @@ async function fetchBunsyo(){
   
   let pdf = await addPDF(blob,allObjects, docData) 
     commentToSigner.value = shomeiData.commentToSigner ? shomeiData.commentToSigner : commentToSigner.value;           
-  if (shomeiData.shomeiNaiyo !=　'signinput')
+  
+    if (shomeiData.shomeiNaiyo !=　'signinput')
   {  return;  }
   else
   {  await fetchContents();  }       
