@@ -289,7 +289,9 @@
     <div id="dragArea" class="dragArea">
       <div v-if="processStep == 1" style="margin-top: 10px">
         <button class="buttonR" @click="contentsSave">署名設定を保存する</button>
-        <button @click="contentsClose" style="margin-left: 77px">入力設定にもどる</button>
+      </div>
+      <div v-if="processStep == 1" style="margin-top: 50px; float: left">
+        <button @click="contentsClose">入力設定にもどる</button>
       </div>
     </div>
     <div v-if="scaleSize !== 0" class="docArea" ref="docArea">
