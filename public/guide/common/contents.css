@@ -1,0 +1,280 @@
+@charset "utf-8";
+
+/* contents block
+---------------------- */
+#containerWrapper {
+  width: 100%;
+  position: relative;
+  background-color: #ffffff;
+  /*margin-top: -200px; 202101 modify -200→-300　戻した 202112 -200→-120*/
+  margin-top: -140px;
+}
+#containerWrapper_html {
+  width: 100%;
+  position: relative;
+  background-color: #ffffff;
+  margin-top: -200px;
+}
+.container {
+  /*width: 1200px;*/
+  width: 98%;
+  margin: 0 auto;
+  position: relative;
+  clear: both;
+}
+.boxHalf {
+  width: 90%;
+}
+
+/* link point
+---------------------- */
+#sectionIntroductionLink,
+#sectionFlowLink,
+#sectionPriceLink {
+  margin-top: -170px;
+  padding-top: 170px;
+}
+
+/* contents
+---------------------- */
+
+/* sectionHowToUse */
+#sectionHowToUse h3,
+#sectionIntroduction h3,
+#sectionPrice h3,
+#sectionFaq h3 {
+  font-weight: bold;
+  font-size: 220%;
+  font-family: 'Noto Sans', sans-serif;
+  line-height: 1.2em;
+}
+#sectionHowToUse h3 span,
+#sectionIntroduction h3 span,
+#sectionPrice h3 span,
+#sectionFaq h3 span {
+  display: block;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-size: 60%;
+  color: #8c8c8c;
+}
+
+#sectionHowToUse h4 span {
+  background: #ffffff;
+  padding: 0 20px;
+  position: relative;
+  z-index: 5;
+}
+#sectionHowToUse ul {
+  margin: 30px 0 0 0;
+  padding: 0px;
+}
+#sectionHowToUse ul li {
+  list-style-type: none;
+  width: 130px;
+  height: 100%;
+  padding: 135px 0 0 0;
+  display: inline-block;
+}
+/* sectionAbout */
+#sectionAbout {
+  width: 100%;
+  height: auto;
+  background-image: url(../images/sectionAboutBg_g.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#sectionAbout h3 {
+  font-weight: bold;
+  font-size: 220%;
+  font-family: 'Noto Sans', sans-serif;
+  line-height: 1.2em;
+  color: #ffffff;
+}
+#sectionAbout h3 span {
+  display: block;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-size: 60%;
+  color: #ffffff;
+}
+#sectionAbout h4 {
+  font-weight: bold;
+  font-size: 200%;
+  font-family: 'Noto Sans', sans-serif;
+}
+#sectionAbout h4 span {
+  font-weight: bold;
+  font-size: 70%;
+  font-family: 'Noto Sans', sans-serif;
+  color: #000000;
+  padding: 0 10px 0 0;
+}
+.sectionAboutContainer {
+  padding: 50px 60px;
+}
+
+/* work list */
+/* common parts
+---------------------- */
+.commonBtn {
+  width: auto;
+  padding: 2px 5px;
+  text-align: center;
+  border-radius: 5px;
+  background-color: #2f91f5;
+  border-color: #2f91f5;
+  color: #ffffff !important;
+}
+.commonBtn a {
+  padding: 14px 20px;
+  border-radius: 10px;
+  background-color: #22518e;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-size: 120%;
+  font-weight: bold;
+}
+.commonBtn a:hover {
+  background-color: #4a88d9;
+}
+.commonBtn a:before {
+  content: '';
+  background-image: url(../images/commonBtnIcon.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 13px;
+  height: 18px;
+  padding: 0 0 0 20px;
+}
+.blogBtn a {
+  background-image: url(../images/blogBeginnerBtn-crop.png);
+  border: 2px solid #389ef6;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100%;
+  padding: 25px 0;
+  width: 520px;
+  display: block;
+  background-color: #ffffff;
+  z-index: 1;
+  margin: 0 50px 0 33%;
+  /*margin-left:25%;*/
+}
+
+/* page navi */
+
+/*  introduction */
+.sectionCatch {
+  font-size: 120%;
+  font-weight: normal;
+  font-family: 'Noto Sans', sans-serif;
+  line-height: 1.8em;
+}
+#sectionIntroduction h4,
+#sectionPrice h4 {
+  text-align: center;
+  font-weight: normal;
+  position: relative;
+}
+#sectionIntroduction h4 span,
+#sectionPrice h4 span {
+  background: #ffffff;
+  padding: 12px 40px;
+  font-size: 140%;
+  position: relative;
+  z-index: 5;
+  border: 1px solid #808080;
+  border-radius: 50px;
+}
+#sectionIntroduction h4:before,
+#sectionPrice h4:before {
+  content: '';
+  display: block;
+  border-top: solid 1px #808080;
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+}
+
+.introductionBox ul {
+  margin: 0px;
+  padding: 0px;
+}
+.introductionBox ul li {
+  width: 33%;
+  float: left;
+  padding: 85px 0 0 0;
+  list-style-type: none;
+}
+.introductionBox h5 {
+  font-size: 120%;
+}
+.introductionBox p {
+  padding: 30px 0;
+}
+.introductionBox h5 span {
+  display: block;
+  color: #595959;
+  font-weight: normal;
+  font-size: 80%;
+}
+
+/* sectionFlow */
+#sectionFlow {
+  width: 100%;
+  height: auto;
+  background-color: #ffffff;
+  /*background-color: #ddf0f6; */
+}
+.sectionFlowClient {
+  background-color: #f9f3eb !important;
+}
+#sectionFlow h3 {
+  font-weight: bold;
+  font-size: 220%;
+  font-family: 'Noto Sans', sans-serif;
+  line-height: 1.2em;
+  color: #000000;
+}
+#sectionFlow h3 span {
+  display: block;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-size: 60%;
+  color: #8c8c8c;
+}
+#sectionFlow ul {
+  margin: 0px;
+  padding: 0;
+}
+#sectionFlow ul li {
+  /*  width: 30%;
+    float: left;*/
+  list-style-type: none;
+  padding: 0px 20px 5px 20px;
+  position: relative;
+}
+#sectionFlow ul li:nth-child(3n) {
+  padding-right: 0;
+}
+#sectionFlow ul li .flowStep img {
+  width: 101px;
+  margin: 0 auto;
+  position: absolute;
+  top: -25px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+}
+#sectionFlow ul li h4 {
+  font-weight: bold;
+  font-size: 120%;
+  text-align: center;
+  padding: 10px 0;
+}
+#sectionFlow ul li .sectionFlowInner {
+  background-color: #ffffff;
+  padding: 66px 36px 26px 36px;
+}
+
+/* sectionPrice */

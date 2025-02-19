@@ -1,0 +1,82 @@
+@charset "utf-8";
+
+/* ---------------------
+footer block
+---------------------- */
+#footerWrapper {
+  width: 100%;
+}
+
+.footerNaviWrapper {
+  width: 100%;
+  background-color: #fafafa;
+}
+.footerCopyrightWrapper {
+  width: 100%;
+  background-color: #464d49;
+}
+
+/* ---------------------
+footer navi
+---------------------- */
+.footerNaviWrapper ul {
+  margin: 0px;
+  padding: 0px;
+}
+.footerNaviWrapper ul li {
+  display: inline-block;
+  list-style-type: none;
+}
+/* ---------------------
+footer logo
+---------------------- */
+.footerLogoBox {
+}
+.footerLogoBox a {
+  background-image: url(../images/footerLogo.png);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: contain;
+  width: 434px;
+  height: 38px;
+  display: block;
+}
+
+/* ---------------------
+footer sub navi
+---------------------- */
+.footerNaviBox ul {
+  margin: 0px;
+  padding: 0px;
+}
+.footerNaviBox ul li {
+  display: inline-block;
+  list-style-type: none;
+  color: #191919;
+  font-size: 90%;
+}
+.footerNaviBox ul li:after {
+  content: ' / ';
+  display: inline-block;
+  color: #ffffff;
+}
+.footerNaviBox ul li:last-child:after {
+  content: '';
+}
+.footerNaviBox ul li a {
+  padding: 0 10px;
+  color: #ffffff;
+}
+.footerNaviBox ul li a:hover {
+  color: #389ef6 !important;
+}
+
+.footerNaviBox ul li a:hover {
+  color: #191919;
+}
+.copyRight li a {
+  color: #ffffff;
+}
+.copyRight li a:hover {
+  color: #389ef6;
+}

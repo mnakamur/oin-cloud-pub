@@ -14,6 +14,7 @@ import { fetchAuthSession } from "aws-amplify/auth";
 
 import PdfPage from './PdfPage.vue'
 import ObjectContainer from './ObjectContainer.vue'
+import ExplanationSigndo from './ExplanationSigndo.vue';
 
 const client = generateClient();
 const { errorVisible, infoVisible, infoMessage, showMessage } = useMsgHandler();
@@ -34,6 +35,7 @@ const commentToAuthor = ref('');
 const commentToSigner = ref('');
 const shomeiButtonStatus = ref(true)
 const rootShowStatus = ref(false)
+const isModalVisible = ref(false);
 const isDownloading = ref(false);
 const shomeisyaName = ref('');
 const allObjects = ref([])
@@ -70,7 +72,7 @@ async function fetchBunsyo(){
   
   try {
   const shomeiData = await fetchShomei() 
-  console.log('shomeiData=',shomeiData,routeNo.value)
+  
   if (shomeiData != false)
   { 
     shomeisyaName.value = shomeiData.name;
@@ -409,13 +411,22 @@ function shomeiConfirm(status) {
          } 
      else 
      {return false}    
-  }    
+  } 
+  function showModal() {
+    isModalVisible.value = true;
+  }     
 </script>
 <template>
  <div class="container"> 
  <div v-if = "shomeiButtonStatus">
     <h3> {{ shomeisyaName }} 様</h3>
-    <p>文書の内容を確認してください。<strong>文書が見れるのは送付されてから7日間です。</strong><br>
+    <p>文書の内容を確認してください。<strong>文書が見れるのは送付されてから7日間です。</strong>
+    <button @click="showModal">操作説明を見る</button><br/>  
+      <ExplanationSigndo
+        v-if="isModalVisible"
+        @close="isModalVisible = false"
+        :isVisible="isModalVisible"
+      />
        <div v-if="inputExplanationVisible" class="comment_input">
          入力内容がありますので、それぞれの入力コメントに沿って入力してください
          <div v-for="(item, index) in formattedObjects(index)" :key="index">

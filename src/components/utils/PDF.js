@@ -6,16 +6,12 @@ import { textToPdf } from './makeTextPDF';
 export async function addPDF(file, allObjects, docData) {
   try {
     const pdf = await readAsPDF(file);
-    //const { pages, numPages } = docData.value;
     docData.value.pdfFile = file;
     docData.value.numPages = pdf.numPages;
     file.name && (docData.value.docName = file.name.split('.').slice(0, -1).join('.'));
-    //{docData.value.docName = file.name.split('.').slice(0, -1).join('.');}
-    //docData.value.pages.splice(0, docData.value.pages.length);
     docData.value.pages = Array(pdf.numPages)
       .fill()
       .map((_, i) => pdf.getPage(i + 1));
-    //docData.value.pages = Array.from({ length: numPages }, (_, i) => pdf.getPage(i + 1));
 
     allObjects.value.splice(0, allObjects.value.length);
     const pagesViewports = await Promise.all(
@@ -31,11 +27,9 @@ export async function addPDF(file, allObjects, docData) {
     const maxWidth = Math.max(...pagesViewports.map((vp) => vp.width));
     maxWidth * 1.5 < window.innerWidth ? (scale = 1.2) : (scale = 1.0);
     //Math.max(...pagesWidths)*1.5 < window.innerWidth? scale=1.2 : scale=1.0;
-    //console.log('pagesViewports=',pagesViewports,window.innerWidth,scale,maxWidth);
     /*pdf.getPage().map(async(pageIndex) => { 
             const eachPage = await pdf.getPage(1);
             const viewport = eachPage.getViewport({ scale: 1 });
-            console.log('viewport.width=',viewport.width)
         //}) */
     docData.value.pagesScale = Array(pdf.numPages).fill(scale);
     docData.value.pagesViewports = pagesViewports;
@@ -63,12 +57,6 @@ export async function verifyInPdf(input_pdf) {
   const maxSizeInBytes = 5 * 1024 * 1024;
   const chk_maxSize = input_pdf.size > maxSizeInBytes ? 1 : -1;
 
-  //console.log('filesize=',input_pdf.size)
-
-  //const chk_objstm = inpdf.indexOf('/ObjStm')
-  //const chk_stmxref = inpdf.indexOf('/XRef')
-  //const chk_stmxref = -1
-  //console.log(chk_sig, chk_acroform, chk_objstm, chk_stmxref)
   //if ([chk_sig, chk_acroform, chk_objstm, chk_stmxref].some(val => val !== -1)) {
   if ([chk_sig, chk_acroform, chk_maxSize].some((val) => val !== -1)) {
     return false;
@@ -123,7 +111,7 @@ export async function save(pdfFile, objects, name) {
         let { x, y, lines, lineHeight, size, fontFamily, width } = object;
         const height = size * lineHeight * lines.length;
         const font = await fetchFont(fontFamily);
-        //console.log('textto_input=',lines,size,lineHeight,width,height,fontFamily)
+
         const [textPage] = await pdfDoc.embedPdf(
           await textToPdf({
             lines,
@@ -135,7 +123,7 @@ export async function save(pdfFile, objects, name) {
             dy: font.correction(size, lineHeight),
           })
         );
-        //console.log('textPAge=',textPage)
+
         return () =>
           page.drawPage(textPage, {
             width,

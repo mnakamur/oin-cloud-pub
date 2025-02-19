@@ -28,7 +28,7 @@ window.makeTextPDF = async function makeTextPDF({
     stream.on('finish', function () {
       const blob = stream.toBlob('application/pdf');
       const response = new Response(blob);
-      //console.log('response=',response)
+      
       res(response.arrayBuffer());
     });
   });

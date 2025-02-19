@@ -8,7 +8,7 @@
         <span class="logoText">マーケットインターフェース株式会社</span>
       </div>
       <ul class="footElemnt">
-        <li>使い方</li>
+        <li><a href="guide/oin-cloudDoc.html" target="_blank">押印クラウドとは</a></li>
         <li>
           <a
             href="https://mail.google.com/mail/?view=cm&to=oin_cloud@market-interface.co.jp&su=押印クラウドに関するお問合せ&body=お名前・連絡先・お問合せ内容でご入力ください"
