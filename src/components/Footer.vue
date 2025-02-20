@@ -9,7 +9,7 @@
       </div>
       <ul class="footElemnt">
         <li>
-          <a href="oin-cloudDoc.html" target="_blank" rel="noopener">押印クラウドとは</a>
+          <a href="/guide/oin-cloudDoc.html" target="_blank" rel="noopener">押印クラウドとは</a>
         </li>
         <li>
           <a
