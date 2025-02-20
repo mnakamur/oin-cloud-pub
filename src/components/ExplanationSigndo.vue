@@ -54,7 +54,7 @@
           width="340"
           height="180"
           ontrolsList="nodownload"
-          src="../../public/guide/image/7_oincloud_pdfSign.mp4"
+          src="/guide/image/7_oincloud_pdfSign.mp4"
           controls
         ></video>
       </div>
