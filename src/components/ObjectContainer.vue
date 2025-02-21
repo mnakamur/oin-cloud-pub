@@ -370,7 +370,7 @@
 
   async function uploadImage(e) {
     const file = e.target.files[0];
-    const chkBite = await readAsDataURL(file.slice(0, 8));
+    const chkBite = await readAsArrayBuffer(file.slice(0, 8));
     const buffer = new Uint8Array(chkBite);
     const isJpeg = buffer[0] === 0xff && buffer[1] === 0xd8 && buffer[2] === 0xff;
 
@@ -384,6 +384,7 @@
       buffer[5] === 0x0a &&
       buffer[6] === 0x1a &&
       buffer[7] === 0x0a;
+    console.log('isjpeg=', isJpeg, isPng, buffer);
     if (!isJpeg && !isPng) {
       showMessage('読み込めないファイル形式です<br>・JPGもしくはPNGを読み込ませてください');
       return;
