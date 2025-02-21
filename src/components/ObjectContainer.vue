@@ -666,7 +666,7 @@
           type="file"
           class="fileinput"
           name="image"
-          accept=".png"
+          accept=".png,.jpg,.jpeg"
           @change="uploadImage"
         />
         <p v-if="operation == 'input'" class="objComment_image">{{ objComment }}</p>
