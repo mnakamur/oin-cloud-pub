@@ -152,6 +152,7 @@
             userEmail: createUserAttr.email,
             docName: docData.value.docName,
             pageNum: docData.value.numPages,
+            shomeiLength: 0,
             bunStatus: 'create',
             identityId: credentials.identityId,
           },
@@ -179,7 +180,12 @@
     </div>
     <div id="dragArea" class="dragArea">
       <div>
-        　　　<label for="file" class="file_label"> 対象文書を読み込んでください </label>
+        <label for="file" class="fileLabel"> PDF文書を読み込んでください </label>
+        <a class="htmlLink" href="/guide/oin-cloudDoc.html#pdfspec" target="_blank" rel="noopener"
+          >登録できるPDF文書</a
+        >
+      </div>
+      <div>
         <input id="file" name="file" type="file" class="buttonB" @change="fileChanged(this)" />
       </div>
       <div v-if="processStep > 1" style="font-weight: bold; margin-top: 10px">
@@ -240,8 +246,11 @@
     float: right;
     margin-top: -30px;
   }
-  .file_label {
-    margin-left: -40px;
+  .fileLabel {
+    margin-left: 0px;
+  }
+  .htmlLink {
+    margin-left: 40px;
   }
 
   .selected-pdf {
@@ -270,6 +279,7 @@
   }
   .buttonB::file-selector-button {
     background-color: turquoise;
+    margin-top: 5px;
   }
   .buttonR {
     margin-right: 10px;

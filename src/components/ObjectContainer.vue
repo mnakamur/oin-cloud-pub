@@ -384,9 +384,9 @@
       buffer[5] === 0x0a &&
       buffer[6] === 0x1a &&
       buffer[7] === 0x0a;
-    console.log('isjpeg=', isJpeg, isPng, buffer);
+
     if (!isJpeg && !isPng) {
-      showMessage('読み込めないファイル形式です<br>・JPGもしくはPNGを読み込ませてください');
+      showMessage('読み込めないファイル形式です<br>JPG.jpegもしくはPNGを読み込ませてください');
       return;
     }
     if (file) {
