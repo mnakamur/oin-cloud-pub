@@ -2,7 +2,7 @@
   import { reactive, ref, onMounted, watch } from 'vue';
   import ObjectImage from './objects/ObjectImage.vue';
   import SignatureCanvasdraw from './SignatureCanvasdraw.vue';
-  import { readAsImage, readAsDataURL } from './utils/asyncReader';
+  import { readAsImage, readAsDataURL, readAsArrayBuffer } from './utils/asyncReader';
   import { errorToLambda } from './utils/lambdahelper';
   import { useMsgHandler } from './utils/helper';
   const props = defineProps({
@@ -370,6 +370,24 @@
 
   async function uploadImage(e) {
     const file = e.target.files[0];
+    const chkBite = await readAsDataURL(file.slice(0, 8));
+    const buffer = new Uint8Array(chkBite);
+    const isJpeg = buffer[0] === 0xff && buffer[1] === 0xd8 && buffer[2] === 0xff;
+
+    // PNGのマジックナンバー (先頭8バイト)
+    const isPng =
+      buffer[0] === 0x89 &&
+      buffer[1] === 0x50 &&
+      buffer[2] === 0x4e &&
+      buffer[3] === 0x47 &&
+      buffer[4] === 0x0d &&
+      buffer[5] === 0x0a &&
+      buffer[6] === 0x1a &&
+      buffer[7] === 0x0a;
+    if (!isJpeg && !isPng) {
+      showMessage('読み込めないファイル形式です<br>・JPGもしくはPNGを読み込ませてください');
+      return;
+    }
     if (file) {
       await addImage(file);
       inputComplete.value = addImage(file) ? 'finish' : inputComplete.value;
