@@ -50,8 +50,8 @@
       <div class="video">
         <p>動画説明（13秒）</p>
         <video
-          width="340"
-          height="180"
+          width="560"
+          height="315"
           ontrolsList="nodownload"
           src="/guide/image/7_oincloud_pdfSign.mp4"
           controls
