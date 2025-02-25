@@ -252,14 +252,15 @@ function updateObject(objectId, payload) {
 
 async function shomeiDone(){
   if (shomeiButtonStatus.value == false){ return}
-  const userConfirm = shomeiConfirm("承認")
-  if (userConfirm == false){ return}
   const unfinObj = allObjects.value.filter((object) => object.status != 'fin');
     if(allObjects.value.length > 0 && unfinObj.length > 0)
     { 
       showMessage('署名入力が完了していない要素があります')   
       return
     }
+  const userConfirm = shomeiConfirm("承認")
+  if (userConfirm == false){ return}
+  
   shomeiButtonStatus.value = false;  
   s3folder = decoSignedUrl.match(/protected\/([^\/]+)\//);;
   
