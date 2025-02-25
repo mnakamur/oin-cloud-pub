@@ -54,6 +54,7 @@
           height="180"
           ontrolsList="nodownload"
           src="/guide/image/7_oincloud_pdfSign.mp4"
+          controls
         ></video>
       </div>
       <button @click="closeModal" class="close-button-b">×</button>
@@ -64,7 +65,7 @@
 <style scoped>
   .modal-overlay {
     position: fixed;
-    margin-top: 120px;
+    top: 0px;
     left: 0;
     width: 90%;
     height: 90%;

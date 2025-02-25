@@ -42,6 +42,7 @@
           height="180"
           ontrolsList="nodownload"
           src="../../public/guide/image/5_oincloud_inputDefine.mp4"
+          controls
         ></video>
       </div>
       <button @click="closeModal" class="close-button-b">×</button>
