@@ -67,8 +67,8 @@
     position: fixed;
     top: 0px;
     left: 0;
-    width: 90%;
-    height: 90%;
+    width: 98%;
+    height: 98%;
     background: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
@@ -81,6 +81,7 @@
     padding: 20px;
     border-radius: 5px;
     position: relative;
+    margin-top: 200px;
   }
   .content {
     font-size: 14px;
