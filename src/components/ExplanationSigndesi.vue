@@ -69,6 +69,7 @@
     padding: 20px;
     border-radius: 5px;
     position: relative;
+    margin-top: 200px;
   }
   .content {
     font-size: 14px;

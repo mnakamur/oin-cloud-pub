@@ -52,6 +52,7 @@
           window.location.reload();
         }, 3000);
       }
+      showMessage('リロードした場合はPDF登録からやり直してくださいのメッセージ', 'error', 3000);
     });
   });
 
