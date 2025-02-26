@@ -16,11 +16,10 @@ jobs:
           persist-credentials: false
 
       - name: Push to public repo
-      
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git remote add public https://x-access-token:${GITHUB_TOKEN}@github.com/mnakamur/oin-cloud-pub.git
           git push -f public main
-　　　　env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
