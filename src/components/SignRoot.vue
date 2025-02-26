@@ -46,13 +46,12 @@
       if (!isReloading) {
         event.preventDefault();
         showMessage('リロードした場合はPDF登録からやり直してください', 'error', 3000);
-
+        /*
         setTimeout(() => {
           isReloading = true;
           window.location.reload();
-        }, 3000);
+        }, 3000);*/
       }
-      showMessage('リロードした場合はPDF登録からやり直してくださいのメッセージ', 'error', 3000);
     });
   });
 
