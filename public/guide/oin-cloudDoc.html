@@ -56,13 +56,15 @@
                     
                     現状では"試験的”な電子署名クラウドサイトとなります。<br>
                     試験的と記載している理由は、下記2点です。<br>
-                    1.署名に使われる電子証明書は,OPENSSL+AWS KMSで作られたself-sign証明書となっています<br>
-                    　*そのため、署名した文書をAdobe　Readerで見ると、”署名の完全性は不明です"と出てきます。当メッセージを消したい場合には、<br>
-                    　 クライアント側で、署名のプロパティ表示→署名者の証明書を表示→"信頼"タグ選択→信頼済み証明書に追加　を行ってください　<br>
-                    2.タイムスタンプについても　オープンソースのタイムススタンプサイト(https://freetsa.org/index_en.php)を利用しています<br>
-                       
+                    <p class="tBold">
+                     1.署名に使われる電子証明書は,OPENSSL+AWS KMSで作られたself-sign証明書となっています<br>
+                     2.タイムスタンプについても　オープンソースのタイムススタンプ<a href="https://freetsa.org/index_en.php" target="_blank">(https://freetsa.org/index_en.php)</a>を利用しています</p>
+                    *そのため、署名した文書をAdobe　Readerで見ると、”署名の完全性は不明です"と出てきます。<br>
+                    当メッセージを消したい場合には、クライアント側で<br>
+                    署名のプロパティ表示→署名者の証明書を表示→"信頼"タグ選択→信頼済み証明書に追加　を行ってください<br>
+                    
                   <!---  ＊電子署名法では、</br>
-                    ＊PDFの電子署名規約  -->
+                    ＊PDFの電子署名規約  https://www.moj.go.jp/ONLINE/CERTIFICATION/GUIDE/guide02.html-->
                     そのため、電子署名を試験的に見るためのみにお使いください。<br>
                     
                    <p class="mrgn-t20"> 付与される電子署名について</p>
@@ -71,7 +73,7 @@
                     ハッシュアルゴリズムsha512,署名アルゴリズムRSA　PKCS#1　V1.5を利用しています。<br>
                     タイムスタンプについては、DocTimeStamp形式で、ハッシュアルゴリズムと署名アルゴリズムは
                     文書への署名と同じです。<br>
-                    PDFに対する署名形式の種類についてはリンクをご覧ください。
+                    PDFに対する署名形式の種類については<a href="https://ja.wikipedia.org/wiki/PAdES" alt="padEsとは">リンク:PAdES</a>をご覧ください<br>
                 </div>
                 <h4  id="pdfspec" class="tCenter mrgn-t20"><span>現状登録できるPDF仕様</span></h4>
                 <div class="sectionCatch tLeft pad-b20 mrgn-l30">
@@ -162,20 +164,22 @@
         <h3 class="tCenter mrgn-b20">押印クラウドシステムについて<span>system design</span></h3>
 
         <div class="sectionCatch tLeft pad-l50">
-        押印クラウドは、オープンソース＋AWS amplify+AWS　KMSで開発しています。<br>
+        押印クラウドは、オープンソース＋AWS amplify+AWS KMSで開発しています。<br>
+        <img class="mrgn-l10p" src="../guide/image/oinArch.png" width="700" height="500" alt="oin-cloudのアーキテクチャ">
 
-利用している主なオープンソースは下記のとおりです。<br>
-これらのオープンソースの製作者の皆様に感謝申し上げます<br>
-バックエンド<br>
-     <p>node-signpdf(https://github.com/vbuch/node-signpdf)</p>
-     <p>node-forge (https://github.com/digitalbazaar/forge)</p>
-フロントエンド<br>
-　　 <p>Pdf-editor(https://github.com/Perfect0B0D/Pdf-editer?tab=readme-ov-file)</p>
-　　 <p>Pdf-editor vue版'(https://github.com/LibreSign/vue-pdf-editor)</p>
-タイムスタンプ　freeTSA.org　(https://freetsa.org/index_en.php)　　を使っています<br>
+<p>利用している主なオープンソースは下記のとおりです。</p>
 
+バックエンド:PDFに署名する機能で使っています<br>
+     <p>node-signpdf<a href="https://github.com/vbuch/node-signpdf" target="_blank">(https://github.com/vbuch/node-signpdf)</a></p>
+     <p>node-forge<a href="https://github.com/digitalbazaar/forge" target="_blank"> (https://github.com/digitalbazaar/forge)</a></p>
+フロントエンド：PDFに署名のための設定をするところで使っています<br>
+     <p>Pdf-editor<a href="https://github.com/Perfect0B0D/Pdf-editer?tab=readme-ov-file" target="_blank">(https://github.com/Perfect0B0D/Pdf-editer?tab=readme-ov-file)</a></p>
+     <p>Pdf-editor vue版<a href="https://github.com/LibreSign/vue-pdf-editor" target="_blank">(https://github.com/LibreSign/vue-pdf-editor)</a></p>
+タイムスタンプ　<a href="https://freetsa.org/index_en.php" target="_blank">freeTSA.org　(https://freetsa.org/index_en.php)</a>を使っています<br>
+これらオープンソースの製作者の皆様に感謝申し上げます<br>
 ・フロントエントエンジンは　AWS Amplify　gen1 v6モードでVueのバージョンは3.3.4となっています<br>
 ・バックエンドは、node.js v18を利用しています<br>
+押印クラウドのソース（
 
 
         </div>
@@ -207,10 +211,10 @@
 
 <!-- script/ -->
     <script src="common/js/jquery.min.js"></script>
-    <script src="common/js/jquery.easing.min.js"></script>
+    <!--<script src="common/js/jquery.easing.min.js"></script>
     <script>
       //$.noConflict();
-    </script>
+    </script>-->
 
     <!--<script type="text/javascript">
     $(function() {

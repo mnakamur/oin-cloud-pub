@@ -38,8 +38,8 @@
       <div class="video">
         <p>動画説明（27秒）</p>
         <video
-          width="340"
-          height="180"
+          width="560"
+          height="315"
           ontrolsList="nodownload"
           src="../../public/guide/image/5_oincloud_inputDefine.mp4"
           controls

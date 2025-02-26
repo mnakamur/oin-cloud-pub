@@ -155,8 +155,14 @@ a:hover img {
 .mrgn-l10 {
   margin-left: 10px;
 }
+.mrgn-l10p {
+  margin-left: 10%;
+}
 .mrgn-l15 {
   margin-left: 15px;
+}
+.mrgn-l15p {
+  margin-left: 15%;
 }
 .mrgn-l20 {
   margin-left: 20px;
