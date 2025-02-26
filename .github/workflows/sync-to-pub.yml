@@ -17,9 +17,9 @@ jobs:
 
       - name: Push to public repo
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          PAT_FOR_SYNC: ${{ secrets.PAT_FOR_SYNC }}
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git remote add public https://x-access-token:${GITHUB_TOKEN}@github.com/mnakamur/oin-cloud-pub.git
+          git remote add public https://x-access-token:${PAT_FOR_SYNC}@github.com/mnakamur/oin-cloud-pub.git
           git push -f public main
