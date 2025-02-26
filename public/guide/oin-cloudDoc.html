@@ -59,7 +59,7 @@
                     1.署名に使われる電子証明書は,OPENSSL+AWS KMSで作られたself-sign証明書となっています<br>
                     　*そのため、署名した文書をAdobe　Readerで見ると、”署名の完全性は不明です"と出てきます。当メッセージを消したい場合には、<br>
                     　 クライアント側で、署名のプロパティ表示→署名者の証明書を表示→"信頼"タグ選択→信頼済み証明書に追加　を行ってください　<br>
-                    2.タイムスタンプについても　オープンソースのタイムススタンプサイト(https://freetsa.org/tsr)を利用しています<br>
+                    2.タイムスタンプについても　オープンソースのタイムススタンプサイト(https://freetsa.org/index_en.php)を利用しています<br>
                        
                   <!---  ＊電子署名法では、</br>
                     ＊PDFの電子署名規約  -->
@@ -161,7 +161,23 @@
         <div class="container">
         <h3 class="tCenter mrgn-b20">押印クラウドシステムについて<span>system design</span></h3>
 
-        <div class="sectionCatch tCenter pad-b50">
+        <div class="sectionCatch tLeft pad-l50">
+        押印クラウドは、オープンソース＋AWS amplify+AWS　KMSで開発しています。<br>
+
+利用している主なオープンソースは下記のとおりです。<br>
+これらのオープンソースの製作者の皆様に感謝申し上げます<br>
+バックエンド<br>
+     <p>node-signpdf(https://github.com/vbuch/node-signpdf)</p>
+     <p>node-forge (https://github.com/digitalbazaar/forge)</p>
+フロントエンド<br>
+　　 <p>Pdf-editor(https://github.com/Perfect0B0D/Pdf-editer?tab=readme-ov-file)</p>
+　　 <p>Pdf-editor vue版'(https://github.com/LibreSign/vue-pdf-editor)</p>
+タイムスタンプ　freeTSA.org　(https://freetsa.org/index_en.php)　　を使っています<br>
+
+・フロントエントエンジンは　AWS Amplify　gen1 v6モードでVueのバージョンは3.3.4となっています<br>
+・バックエンドは、node.js v18を利用しています<br>
+
+
         </div>
 
          </div>
