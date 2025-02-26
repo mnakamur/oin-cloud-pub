@@ -43,15 +43,16 @@
     fetchBunsyo();
 
     window.addEventListener('beforeunload', function (event) {
-      if (!isReloading) {
-        event.preventDefault();
-        showMessage('リロードした場合はPDF登録からやり直してください', 'error', 3000);
-        /*
+      event.preventDefault();
+      //if (!isReloading) {
+      //  event.preventDefault();
+      //showMessage('リロードした場合はPDF登録からやり直してください', 'error', 3000);
+      /*
         setTimeout(() => {
           isReloading = true;
           window.location.reload();
         }, 3000);*/
-      }
+      //}
     });
   });
 

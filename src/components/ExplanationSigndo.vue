@@ -14,7 +14,7 @@
 <template>
   <div v-if="isVisible" class="modal-overlay">
     <div class="modal-content">
-      <button @click="closeModal" class="close-button">×</button>
+      <button @click="closeModal" class="close-button">Close</button>
       <div class="content">
         <!-- ここに説明用のコンテンツを追加 -->
         <h2>文書署名・却下の操作説明</h2>
@@ -57,7 +57,7 @@
           controls
         ></video>
       </div>
-      <button @click="closeModal" class="close-button-b">×</button>
+      <button @click="closeModal" class="close-button-b">Close</button>
     </div>
   </div>
 </template>
