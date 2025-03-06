@@ -50,9 +50,10 @@ exports.handler = async (event) => {
   }
   const eventBody = event.body;
   //const eventBody = parseRequestBody(event.body);
-  console.log('eventBody=', eventBody);
+
   const pathName = 'protected' + '/' + eventBody.s3folder + '/' + eventBody.createUserId;
   const docfileName = pathName + '/' + eventBody.pdfId;
+  console.log('docfileName=', docfileName, bucket);
   let pdfBuffer = await s3GetObject(docfileName);
   let dumx509 = process.env.DUM_X509;
   pemCert = await s3GetObject(dumx509);
