@@ -46,10 +46,10 @@
     "kmsArn": {
       "Type": "String"
     },
-    "dumX509": {
+    "dumPrkey": {
       "Type": "String"
     },
-    "dumPrkey": {
+    "dumX509": {
       "Type": "String"
     }
   },
@@ -208,11 +208,11 @@
             "KMS_ARN": {
               "Ref": "kmsArn"
             },
-            "DUM_X509": {
-              "Ref": "dumX509"
-            },
             "DUM_PRKEY": {
               "Ref": "dumPrkey"
+            },
+            "DUM_X509": {
+              "Ref": "dumX509"
             }
           }
         },
