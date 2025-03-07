@@ -125,6 +125,7 @@ async function signFunc(pdfBuffer, p12, pemCert, shomeiName, widgetItem) {
     name: shomeiName,
     location: 'tokyo',
     Widget: widgetItem,
+    s3: bucket,
   });
   console.log(2);
   //add
