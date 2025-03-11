@@ -28,10 +28,6 @@
       "Type": "String",
       "Default": "apipdfvueampprjGraphQLAPIKeyOutput"
     },
-    "functionpdfvueampprjshomeiFlowLayerArn": {
-      "Type": "String",
-      "Default": "functionpdfvueampprjshomeiFlowLayerArn"
-    },
     "functionshomeiDocTStampName": {
       "Type": "String",
       "Default": "functionshomeiDocTStampName"
@@ -194,11 +190,7 @@
           ]
         },
         "Runtime": "nodejs18.x",
-        "Layers": [
-          {
-            "Ref": "functionpdfvueampprjshomeiFlowLayerArn"
-          }
-        ],
+        "Layers": [],
         "Timeout": 25
       }
     },

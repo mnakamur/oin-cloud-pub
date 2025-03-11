@@ -1,33 +1,12 @@
 {
-  "lambdaLayers": [
-    {
-      "type": "ProjectLayer",
-      "resourceName": "pdfvueampprjshomeiFlowLayer",
-      "version": "Always choose latest version",
-      "isLatestVersionSelected": true,
-      "env": "main"
-    }
-  ],
   "permissions": {
     "api": {
-      "pdfvueampprj": [
-        "Query",
-        "Mutation"
-      ]
+      "pdfvueampprj": ["Query", "Mutation"]
     },
     "storage": {
-      "amplifyvuepdf": [
-        "read",
-        "update"
-      ],
-      "bunsyo:@model(appsync)": [
-        "read",
-        "update"
-      ],
-      "Shomei:@model(appsync)": [
-        "read",
-        "update"
-      ]
+      "amplifyvuepdf": ["read", "update"],
+      "bunsyo:@model(appsync)": ["read", "update"],
+      "Shomei:@model(appsync)": ["read", "update"]
     }
   },
   "environmentVariableList": [

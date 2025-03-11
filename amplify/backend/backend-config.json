@@ -160,20 +160,6 @@
         },
         {
           "attributes": [
-            "Name"
-          ],
-          "category": "function",
-          "resourceName": "S3Trigger50282eae"
-        },
-        {
-          "attributes": [
-            "Name"
-          ],
-          "category": "function",
-          "resourceName": "shomeiFlow"
-        },
-        {
-          "attributes": [
             "BucketName"
           ],
           "category": "storage",
@@ -201,27 +187,6 @@
           ],
           "category": "auth",
           "resourceName": "pdfvueampprj4dde32ec"
-        },
-        {
-          "attributes": [
-            "Name"
-          ],
-          "category": "function",
-          "resourceName": "S3Trigger50282eae"
-        },
-        {
-          "attributes": [
-            "Name"
-          ],
-          "category": "function",
-          "resourceName": "shomeiFlow"
-        },
-        {
-          "attributes": [
-            "Name"
-          ],
-          "category": "function",
-          "resourceName": "shomeiPdfSign"
         },
         {
           "attributes": [
@@ -417,27 +382,6 @@
         },
         {
           "attributes": [
-            "Name"
-          ],
-          "category": "function",
-          "resourceName": "S3Trigger50282eae"
-        },
-        {
-          "attributes": [
-            "Name"
-          ],
-          "category": "function",
-          "resourceName": "shomeiComplete"
-        },
-        {
-          "attributes": [
-            "Name"
-          ],
-          "category": "function",
-          "resourceName": "shomeiFlow"
-        },
-        {
-          "attributes": [
             "BucketName"
           ],
           "category": "storage",
@@ -478,22 +422,6 @@
         {
           "category": "function",
           "resourceName": "pdfS3Move"
-        }
-      ]
-    },
-    "AMPLIFY_function_pdfvueampprjshomeiFlowLayer_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "pdfvueampprjshomeiFlowLayer"
-        }
-      ]
-    },
-    "AMPLIFY_function_pdfvueampprjshomeiFlowLayer_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "pdfvueampprjshomeiFlowLayer"
         }
       ]
     },

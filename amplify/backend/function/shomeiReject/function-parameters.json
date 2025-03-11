@@ -12,20 +12,6 @@
         "update"
       ]
     },
-    "function": {
-      "S3Trigger50282eae": [
-        "read",
-        "update"
-      ],
-      "shomeiComplete": [
-        "read",
-        "update"
-      ],
-      "shomeiFlow": [
-        "read",
-        "update"
-      ]
-    },
     "storage": {
       "amplifyvuepdf": [
         "read",

@@ -13,19 +13,6 @@
       ]
     },
     "function": {
-      "S3Trigger50282eae": [
-        "create",
-        "read",
-        "update"
-      ],
-      "shomeiFlow": [
-        "read",
-        "update"
-      ],
-      "shomeiPdfSign": [
-        "read",
-        "update"
-      ],
       "shomeiComplete": [
         "read",
         "update"

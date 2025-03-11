@@ -32,14 +32,6 @@
       "Type": "String",
       "Default": "authpdfvueampprj4dde32ecUserPoolId"
     },
-    "functionS3Trigger50282eaeName": {
-      "Type": "String",
-      "Default": "functionS3Trigger50282eaeName"
-    },
-    "functionshomeiFlowName": {
-      "Type": "String",
-      "Default": "functionshomeiFlowName"
-    },
     "storageamplifyvuepdfBucketName": {
       "Type": "String",
       "Default": "storageamplifyvuepdfBucketName"
@@ -121,12 +113,6 @@
             },
             "AUTH_PDFVUEAMPPRJ4DDE32EC_USERPOOLID": {
               "Ref": "authpdfvueampprj4dde32ecUserPoolId"
-            },
-            "FUNCTION_S3TRIGGER50282EAE_NAME": {
-              "Ref": "functionS3Trigger50282eaeName"
-            },
-            "FUNCTION_SHOMEIFLOW_NAME": {
-              "Ref": "functionshomeiFlowName"
             },
             "STORAGE_AMPLIFYVUEPDF_BUCKETNAME": {
               "Ref": "storageamplifyvuepdfBucketName"
@@ -400,65 +386,6 @@
                       ":userpool/",
                       {
                         "Ref": "authpdfvueampprj4dde32ecUserPoolId"
-                      }
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "lambda:Get*",
-                "lambda:List*",
-                "lambda:Invoke*",
-                "lambda:Update*"
-              ],
-              "Resource": [
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:aws:lambda:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":function:",
-                      {
-                        "Ref": "functionS3Trigger50282eaeName"
-                      }
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "lambda:Get*",
-                "lambda:List*",
-                "lambda:Invoke*"
-              ],
-              "Resource": [
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:aws:lambda:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":function:",
-                      {
-                        "Ref": "functionshomeiFlowName"
                       }
                     ]
                   ]

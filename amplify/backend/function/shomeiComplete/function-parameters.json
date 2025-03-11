@@ -12,15 +12,6 @@
         "update"
       ]
     },
-    "function": {
-      "S3Trigger50282eae": [
-        "read",
-        "update"
-      ],
-      "shomeiFlow": [
-        "read"
-      ]
-    },
     "storage": {
       "amplifyvuepdf": [
         "read"

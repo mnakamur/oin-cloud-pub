@@ -63,7 +63,7 @@ amplifytools.xcconfig
 #テスト用モジュール
 amplify/backend/function/shomeiPdfSign/src/index_backup.js
 jizentest.js
-
+amplipushlog.txt
 
 #eslintPrittier系
 .eslintignore

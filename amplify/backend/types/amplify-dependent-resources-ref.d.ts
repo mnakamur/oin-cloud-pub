@@ -37,9 +37,6 @@ export type AmplifyDependentResourcesAttributes = {
       "Name": "string",
       "Region": "string"
     },
-    "pdfvueampprjshomeiFlowLayer": {
-      "Arn": "string"
-    },
     "shomeiComplete": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
