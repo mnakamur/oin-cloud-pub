@@ -233,13 +233,6 @@
           ],
           "category": "storage",
           "resourceName": "amplifyvuepdf"
-        },
-        {
-          "attributes": [
-            "Arn"
-          ],
-          "category": "function",
-          "resourceName": "pdfvueampprjshomeiFlowLayer"
         }
       ],
       "providerPlugin": "awscloudformation",
