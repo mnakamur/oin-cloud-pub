@@ -7,6 +7,7 @@
 	API_PDFVUEAMPPRJ_SHOMEITABLE_ARN
 	API_PDFVUEAMPPRJ_SHOMEITABLE_NAME
 	ENV
+	FUNCTION_SHOMEIDOCTSTAMP_NAME
 	REGION
 	STORAGE_AMPLIFYVUEPDF_BUCKETNAME
 Amplify Params - DO NOT EDIT */
@@ -224,7 +225,7 @@ function encodeToBase64(str) {
 
 async function shomeiDocTstamp(itemId, userID) {
   const params = {
-    FunctionName: 'shomeiDocTStamp-dev',
+    FunctionName: process.env.FUNCTION_SHOMEIDOCTSTAMP_NAME,
     InvocationType: 'Event', // 非同期呼び出しもしくはEvent
     Payload: JSON.stringify({ pdfId: itemId, createUserId: userID }), // 送信するデータ (オプション)
   };

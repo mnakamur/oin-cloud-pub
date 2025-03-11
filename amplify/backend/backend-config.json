@@ -229,6 +229,13 @@
         },
         {
           "attributes": [
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "shomeiDocTStamp"
+        },
+        {
+          "attributes": [
             "BucketName"
           ],
           "category": "storage",

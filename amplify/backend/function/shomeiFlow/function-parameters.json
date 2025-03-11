@@ -1,12 +1,29 @@
 {
   "permissions": {
     "api": {
-      "pdfvueampprj": ["Query", "Mutation"]
+      "pdfvueampprj": [
+        "Query",
+        "Mutation"
+      ]
+    },
+    "function": {
+      "shomeiDocTStamp": [
+        "read"
+      ]
     },
     "storage": {
-      "amplifyvuepdf": ["read", "update"],
-      "bunsyo:@model(appsync)": ["read", "update"],
-      "Shomei:@model(appsync)": ["read", "update"]
+      "amplifyvuepdf": [
+        "read",
+        "update"
+      ],
+      "bunsyo:@model(appsync)": [
+        "read",
+        "update"
+      ],
+      "Shomei:@model(appsync)": [
+        "read",
+        "update"
+      ]
     }
   },
   "environmentVariableList": [
