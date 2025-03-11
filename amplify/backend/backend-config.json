@@ -134,11 +134,6 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
-    "pdfvueampprjshomeiFlowLayer": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "LambdaLayer"
-    },
     "shomeiComplete": {
       "build": true,
       "dependsOn": [
