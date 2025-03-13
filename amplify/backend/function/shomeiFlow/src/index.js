@@ -92,7 +92,7 @@ async function processShomeiRequest(request) {
     const shomeiUrl = await getUrl(bunsyoResult.Items[0]);
     await updateBunsyo(request, shomeiUrl);
     const bunSig = getSignatureFromUrl(shomeiUrl.url);
-    console.log('bunSig=', bunSig, shomeiUrl);
+
     const mailResult = await sendMail(shomeiResult.Items[0], request, bunsyoResult, bunSig);
     if (mailResult.MessageId) {
       const update_result = await updateShomei(request, mailResult.MessageId);

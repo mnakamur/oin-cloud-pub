@@ -69,12 +69,19 @@ async function fetchBunsyo(){
    createUserAttr.userName = bunsyo.data.getBunsyo.userName
    decoSignedUrl = decodeURIComponent(bunsyo.data.getBunsyo.docRef)
    const urlSig = getSignatureFromUrl(decoSignedUrl)
-   console.log('urlSig=',urlSig,shomeiId.value)
+  
    if (urlSig != shomeiId.value)
   {    showMessage('署名する文書ではないようです、画面を閉じてください','error',5000)
        shomeiButtonStatus.value = false
-    　  return;   
+    　  return   
   } 
+  if (routeNo.value > 0 &&
+    bunsyo.data.getBunsyo.bunStatus != "signed" + "," + parseInt(routeNo.value)-1)
+   {
+    showMessage('署名する順番ではないようです、画面を閉じてください','error',5000)
+       shomeiButtonStatus.value = false
+    　  return  
+   } 
   
   try {
   const shomeiData = await fetchShomei() 
