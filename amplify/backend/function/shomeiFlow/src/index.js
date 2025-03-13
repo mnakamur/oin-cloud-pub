@@ -197,10 +197,6 @@ async function sendMail(shomeiItem, request, bunsyoResult, bunSig) {
   const createUser = bunsyoResult.Items[0].userName;
   let cuserReq = { pdfId: request.pdfId, routeNo: '0' };
   const root0Result = await getShomei(cuserReq);
-
-  //const hash = createHash('sha1');
-  //hash.update(request.pdfId + request.routeNo);
-  //const idDigest = hash.copy().digest('hex');
   const idDigest = bunSig;
   const createUserMail = root0Result.Items[0].mail;
 

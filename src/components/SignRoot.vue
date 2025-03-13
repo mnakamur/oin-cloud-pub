@@ -44,15 +44,6 @@
 
     window.addEventListener('beforeunload', function (event) {
       event.preventDefault();
-      //if (!isReloading) {
-      //  event.preventDefault();
-      //showMessage('リロードした場合はPDF登録からやり直してください', 'error', 3000);
-      /*
-        setTimeout(() => {
-          isReloading = true;
-          window.location.reload();
-        }, 3000);*/
-      //}
     });
   });
 
@@ -156,7 +147,7 @@
       }
     }
     if (signdesi.rootSave) {
-      showMessage('ルート保存できましたので、入力設定もしくは文書送付に進んでください。', 'info');
+      showMessage('ルート保存できましたので、入力設定もしくは文書回送に進んでください。', 'info');
     } else {
       showMessage('ルートが保存できませんでした。');
     }

@@ -71,15 +71,15 @@ async function fetchBunsyo(){
    const urlSig = getSignatureFromUrl(decoSignedUrl)
   
    if (urlSig != shomeiId.value)
-  {    showMessage('署名する文書ではないようです、画面を閉じてください','error',5000)
+  {    showMessage('既に署名されているか、署名する文書ではないようです、画面を閉じてください','error',5000)
        shomeiButtonStatus.value = false
     　  return   
   } 
   if (routeNo.value > 0 &&
     bunsyo.data.getBunsyo.bunStatus !=  `signed,${parseInt(routeNo.value, 10) - 1}`)
    {
-    console.log(bunsyo.data.getBunsyo.bunStatus,"signed" + "," + parseInt(routeNo.value)-1,routeNo.value,parseInt(routeNo.value)) 
-    showMessage('署名する順番ではないようです、画面を閉じてください','error',5000)
+    
+    showMessage('署名する文書ではないようです、画面を閉じてください','error',5000)
        shomeiButtonStatus.value = false
     　  return  
    } 
@@ -122,14 +122,7 @@ async function fetchShomei(){
                 query: getShomei,
                 variables: { id: docData.value.pdfFileId + routeNo.value }
                 })
- /* const  shomeiIdChk = await shomeiIdDigest(shomei.data.getShomei.id)
-  
-  if (shomeiIdChk != shomeiId.value)
-  {    showMessage('貴方が署名する文書ではないようです、画面を閉じてください','error',5000)
-       shomeiButtonStatus.value = false
-    　  return false;   
-  } 
- */
+ 
   if (shomei.data.getShomei.shomeiStatus == 'signed' || shomei.data.getShomei.shomeiStatus == 'reject')
   {    showMessage('文書はすでに処理されています 画面を閉じてください','error',5000)
        shomeiButtonStatus.value = false
