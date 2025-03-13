@@ -7,7 +7,7 @@ import { getBunsyo,getShomei,contentsByShomei } from "../graphql/queries";
 import { generateClient } from 'aws-amplify/api';
 import { addPDF,pdfDownload } from './utils/PDF'
 import { errorToLambda,invokeLambda } from './utils/lambdahelper';
-import { useMsgHandler } from "./utils/helper";
+import { useMsgHandler,getSignatureFromUrl } from "./utils/helper";
 import Signstatus from "./SignStatus.vue";
 import { uploadData } from 'aws-amplify/storage';
 import { fetchAuthSession } from "aws-amplify/auth";
@@ -68,7 +68,13 @@ async function fetchBunsyo(){
    createUserAttr.userId   = bunsyo.data.getBunsyo.createUser
    createUserAttr.userName = bunsyo.data.getBunsyo.userName
    decoSignedUrl = decodeURIComponent(bunsyo.data.getBunsyo.docRef)
-   
+   const urlSig = getSignatureFromUrl(decoSignedUrl)
+   console.log('urlSig=',urlSig,shomeiId.value)
+   if (urlSig != shomeiId.value)
+  {    showMessage('署名する文書ではないようです、画面を閉じてください','error',5000)
+       shomeiButtonStatus.value = false
+    　  return;   
+  } 
   
   try {
   const shomeiData = await fetchShomei() 
@@ -108,14 +114,14 @@ async function fetchShomei(){
                 query: getShomei,
                 variables: { id: docData.value.pdfFileId + routeNo.value }
                 })
-  const  shomeiIdChk = await shomeiIdDigest(shomei.data.getShomei.id)
+ /* const  shomeiIdChk = await shomeiIdDigest(shomei.data.getShomei.id)
   
   if (shomeiIdChk != shomeiId.value)
   {    showMessage('貴方が署名する文書ではないようです、画面を閉じてください','error',5000)
        shomeiButtonStatus.value = false
     　  return false;   
   } 
- 
+ */
   if (shomei.data.getShomei.shomeiStatus == 'signed' || shomei.data.getShomei.shomeiStatus == 'reject')
   {    showMessage('文書はすでに処理されています 画面を閉じてください','error',5000)
        shomeiButtonStatus.value = false

@@ -91,7 +91,9 @@ async function processShomeiRequest(request) {
   if (shomeiResult.Items.length > 0) {
     const shomeiUrl = await getUrl(bunsyoResult.Items[0]);
     await updateBunsyo(request, shomeiUrl);
-    const mailResult = await sendMail(shomeiResult.Items[0], request, bunsyoResult);
+    const bunSig = getSignatureFromUrl(shomeiUrl.url);
+    console.log('bunSig=', bunSig, shomeiUrl);
+    const mailResult = await sendMail(shomeiResult.Items[0], request, bunsyoResult, bunSig);
     if (mailResult.MessageId) {
       const update_result = await updateShomei(request, mailResult.MessageId);
       if (update_result.Attributes.shomeiStatus == 'save')
@@ -183,18 +185,23 @@ async function updateBunsyo(request, shomeiUrl) {
   const update_result_bun = await dynamoDB.update(update_params_bun);
   return update_result_bun;
 }
+function getSignatureFromUrl(url) {
+  const urlObj = new URL(url);
+  const params = new URLSearchParams(urlObj.search);
+  return params.get('X-Amz-Signature');
+}
 
-async function sendMail(shomeiItem, request, bunsyoResult) {
+async function sendMail(shomeiItem, request, bunsyoResult, bunSig) {
   const mailAd = shomeiItem.mail;
   const docName = bunsyoResult.Items[0].docName;
   const createUser = bunsyoResult.Items[0].userName;
   let cuserReq = { pdfId: request.pdfId, routeNo: '0' };
   const root0Result = await getShomei(cuserReq);
 
-  const hash = createHash('sha1');
-  hash.update(request.pdfId + request.routeNo);
-  const idDigest = hash.copy().digest('hex');
-
+  //const hash = createHash('sha1');
+  //hash.update(request.pdfId + request.routeNo);
+  //const idDigest = hash.copy().digest('hex');
+  const idDigest = bunSig;
   const createUserMail = root0Result.Items[0].mail;
 
   const link = `${linkUrl}/signdo/${request.pdfId},${request.routeNo},${idDigest}`;
