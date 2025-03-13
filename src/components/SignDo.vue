@@ -78,6 +78,7 @@ async function fetchBunsyo(){
   if (routeNo.value > 0 &&
     bunsyo.data.getBunsyo.bunStatus != "signed" + "," + parseInt(routeNo.value)-1)
    {
+    console.log(bunsyo.data.getBunsyo.bunStatus,"signed" + "," + parseInt(routeNo.value)-1) 
     showMessage('署名する順番ではないようです、画面を閉じてください','error',5000)
        shomeiButtonStatus.value = false
     　  return  
