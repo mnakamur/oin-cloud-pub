@@ -64,7 +64,10 @@ amplifytools.xcconfig
 amplify/backend/function/shomeiPdfSign/src/index_backup.js
 jizentest.js
 amplipushlog.txt
-
+#管理用モジュール
+amplify/backend/function/shomeiMakeX509
+amplify/backend/function/shomeiPdfDel
+amplify/backend/function/shomiErrorCwatch
 #eslintPrittier系
 .eslintignore
 .prettierignore
