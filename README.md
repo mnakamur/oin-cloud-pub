@@ -1,4 +1,4 @@
-## About oin-cloud.com?
+# About oin-cloud.com?
 
 "oin-cloud(https://www.oin-cloud.com)" is a cloud-service allows you to send PDF documents to signers and add electronic signatures and timestamps.<br/>
 Additionally, you can add text inputs, stamp images, dates, and hand-drawn signatures before applying an electronic signature.
@@ -38,7 +38,7 @@ Example documents that can be registered
 1.A PDF exported as a PDF/XSP document from a document created in WORD or EXCEL.<br/>
 2.PDFs exported from OpenOffice or LibreOffice.<br/>
 
-## How to use oin ｰ cloud.com
+# How to use oin ｰ cloud.com
 
 1. Sign up
    To register and request a signature on a document, you must create an account.
@@ -78,11 +78,11 @@ Example documents that can be registered
    By clicking the link in the email, users can access the signed document.<br/>
    The completion link remains valid for 7 days, so be sure to download and save the signed document.<br/>
 
-## About the "oin-cloud" System
+# About the "oin-cloud" System
 
 oin-cloud.com is developed using various open-source software programs + AWS Amplify + AWS KMS.<br/>
 
-**Key Open-Source Technologies Used**
+**Key Open-Source Technologies Used**<br/>
 Many thanks to everyone who contributed to its development and maintenance.<br/>
 1.Backend<br/>
 [node-signpdf](https://github.com/vbuch/node-signpdf)<br/>
