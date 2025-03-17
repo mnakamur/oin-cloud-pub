@@ -19,7 +19,7 @@ The reasons are as follows:
 
 ## Supported PDF Document Specifications
 
-### Documents that cannot be registered ###<br/>
+### Documents that cannot be registered <br/>
 
 1.Non-PDF documents<br/>
 2.Password-protected PDFs<br/>
