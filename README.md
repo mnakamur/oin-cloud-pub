@@ -1,12 +1,12 @@
 ## About oin-cloud.com?
 
-"oin-cloud(https://www.oin-cloud.com)" is a cloud-service allows you to send PDF documents to authoorizers or signers and add electronic signatures and timestamps.<br/>
+"oin-cloud(https://www.oin-cloud.com)" is a cloud-service allows you to send PDF documents to signers and add electronic signatures and timestamps.<br/>
 Additionally, you can add text inputs, stamp images, dates, and hand-drawn signatures before applying an electronic signature.
 
 This is just a **"private"** electronic signature cloud service.
 The reasons are as follows:
 
-1.The electronic certificates used for signing are **"self-signed"** certificates generated with OpenSSL + AWS KMS.<br/>
+1.The electronic certificates used for signing are **"self-signed"** certificates generated with AWS KMS.<br/>
 2.The timestamping service is also based on an open-source timestamping solution (https://freetsa.org/index_en.php).<br/>
 \*Because of this, when viewing a signed document in Adobe Acrobat, a message stating
 "Signature validity is unknown" may appear.
