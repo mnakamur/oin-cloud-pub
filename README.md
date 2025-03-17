@@ -1,4 +1,8 @@
-## About oin-cloud.com?
+<picture>
+<img src="/public/guide/image/inkanCloud_Logo4.png" width=400px>   
+</picture><br/>
+
+# About oin-cloud.com?
 
 "oin-cloud(https://www.oin-cloud.com)" is a cloud-service allows you to send PDF documents to signers and add electronic signatures and timestamps.<br/>
 Additionally, you can add text inputs, stamp images, dates, and hand-drawn signatures before applying an electronic signature.
@@ -11,19 +15,9 @@ The reasons are as follows:
 \*Because of this, when viewing a signed document in Adobe Acrobat, a message stating
 "Signature validity is unknown" may appear.
 
-## About the Electronic Signatures
-
-The applied electronic signature follows the PAdES-T (Signature with Timestamp) level format.<br/>
-
-The signature format for documents is based on PAdES-Basic (adbe.pkcs7.detached),
-using SHA-512 as the hash algorithm and RSA PKCS#1 v1.5 as the signature algorithm.<br/>
-
-The timestamp format is DocTimeStamp, using the same hash and signature algorithms as the document signature.<br/>
-For more details on PDF signature formats, please refer to the PAdES documentation.<br/>
-
 ## Supported PDF Document Specifications
 
-Documents that cannot be registered<br/>
+### Documents that cannot be registered <br/>
 
 1.Non-PDF documents<br/>
 2.Password-protected PDFs<br/>
@@ -33,12 +27,12 @@ Documents that cannot be registered<br/>
 6.PDFs created or modified using the latest Adobe Acrobat<br/>
 (This service does not support streams and PDFs utilizing features from version 1.5 or later cannot currently be registered.Documents created using other PDF editors,such as latest PDFElement, are also not supported.)<br/>
 
-Example documents that can be registered
+### Example documents that can be registered
 
 1.A PDF exported as a PDF/XSP document from a document created in WORD or EXCEL.<br/>
 2.PDFs exported from OpenOffice or LibreOffice.<br/>
 
-## How to use oin ｰ cloud.com
+# How to use oin ｰ cloud.com
 
 1. Sign up
    To register and request a signature on a document, you must create an account.
@@ -78,11 +72,13 @@ Example documents that can be registered
    By clicking the link in the email, users can access the signed document.<br/>
    The completion link remains valid for 7 days, so be sure to download and save the signed document.<br/>
 
-## About the "oin-cloud" System
+# About the "oin-cloud" System
 
 oin-cloud.com is developed using various open-source software programs + AWS Amplify + AWS KMS.<br/>
-
-**Key Open-Source Technologies Used**
+<picture>
+<img src="/public/guide/image/oinArch.png" width=700px>  
+</picture><br/>  
+**Key Open-Source Technologies Used**<br/>
 Many thanks to everyone who contributed to its development and maintenance.<br/>
 1.Backend<br/>
 [node-signpdf](https://github.com/vbuch/node-signpdf)<br/>
@@ -93,3 +89,13 @@ Many thanks to everyone who contributed to its development and maintenance.<br/>
 
 3.TimeStamps<br/>
 [freeTSA.org](https://freetsa.org/index_en.php)<br/>
+
+## About the Electronic Signatures
+
+The applied electronic signature follows the PAdES-T (Signature with Timestamp) level format.<br/>
+
+The signature format for documents is based on PAdES-Basic (adbe.pkcs7.detached),
+using SHA-512 as the hash algorithm and RSA PKCS#1 v1.5 as the signature algorithm.<br/>
+
+The timestamp format is DocTimeStamp, using the same hash and signature algorithms as the document signature.<br/>
+For more details on PDF signature formats, please refer to the PAdES documentation.<br/>
