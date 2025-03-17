@@ -1,5 +1,8 @@
-![oin-cloud Log](/public/guide/image/inkanCloud_Logo4.png)
-# About oin-cloud.com?
+<picture>
+<img src="/public/guide/image/inkanCloud_Logo4.png" width=400px>   
+</picture><br/>  
+
+# About oin-cloud.com? #
 
 "oin-cloud(https://www.oin-cloud.com)" is a cloud-service allows you to send PDF documents to signers and add electronic signatures and timestamps.<br/>
 Additionally, you can add text inputs, stamp images, dates, and hand-drawn signatures before applying an electronic signature.
@@ -12,7 +15,7 @@ The reasons are as follows:
 \*Because of this, when viewing a signed document in Adobe Acrobat, a message stating
 "Signature validity is unknown" may appear.
 
-## About the Electronic Signatures
+## About the Electronic Signatures ##
 
 The applied electronic signature follows the PAdES-T (Signature with Timestamp) level format.<br/>
 
@@ -22,9 +25,9 @@ using SHA-512 as the hash algorithm and RSA PKCS#1 v1.5 as the signature algorit
 The timestamp format is DocTimeStamp, using the same hash and signature algorithms as the document signature.<br/>
 For more details on PDF signature formats, please refer to the PAdES documentation.<br/>
 
-## Supported PDF Document Specifications
+## Supported PDF Document Specifications ##
 
-Documents that cannot be registered<br/>
+### Documents that cannot be registered ###<br/>
 
 1.Non-PDF documents<br/>
 2.Password-protected PDFs<br/>
@@ -34,7 +37,7 @@ Documents that cannot be registered<br/>
 6.PDFs created or modified using the latest Adobe Acrobat<br/>
 (This service does not support streams and PDFs utilizing features from version 1.5 or later cannot currently be registered.Documents created using other PDF editors,such as latest PDFElement, are also not supported.)<br/>
 
-Example documents that can be registered
+### Example documents that can be registered ###
 
 1.A PDF exported as a PDF/XSP document from a document created in WORD or EXCEL.<br/>
 2.PDFs exported from OpenOffice or LibreOffice.<br/>
@@ -81,7 +84,9 @@ Example documents that can be registered
 
 # About the "oin-cloud" System
 oin-cloud.com is developed using various open-source software programs + AWS Amplify + AWS KMS.<br/>
-![oin-cloud archtecture](/public/guide/image/oinArch.png)
+<picture>
+<img src="/public/guide/image/oinArch.png" width=700px>   
+</picture><br/>  
 **Key Open-Source Technologies Used**<br/>
 Many thanks to everyone who contributed to its development and maintenance.<br/>
 1.Backend<br/>
