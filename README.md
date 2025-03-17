@@ -15,20 +15,9 @@ The reasons are as follows:
 \*Because of this, when viewing a signed document in Adobe Acrobat, a message stating
 "Signature validity is unknown" may appear.
 
-## About the Electronic Signatures ##
-
-The applied electronic signature follows the PAdES-T (Signature with Timestamp) level format.<br/>
-
-The signature format for documents is based on PAdES-Basic (adbe.pkcs7.detached),
-using SHA-512 as the hash algorithm and RSA PKCS#1 v1.5 as the signature algorithm.<br/>
-
-The timestamp format is DocTimeStamp, using the same hash and signature algorithms as the document signature.<br/>
-For more details on PDF signature formats, please refer to the PAdES documentation.<br/>
-
 ## Supported PDF Document Specifications ##
 
 ### Documents that cannot be registered ###<br/>
-
 1.Non-PDF documents<br/>
 2.Password-protected PDFs<br/>
 3.Already signed PDFs<br/>
@@ -38,11 +27,10 @@ For more details on PDF signature formats, please refer to the PAdES documentati
 (This service does not support streams and PDFs utilizing features from version 1.5 or later cannot currently be registered.Documents created using other PDF editors,such as latest PDFElement, are also not supported.)<br/>
 
 ### Example documents that can be registered ###
-
 1.A PDF exported as a PDF/XSP document from a document created in WORD or EXCEL.<br/>
 2.PDFs exported from OpenOffice or LibreOffice.<br/>
 
-# How to use oin ｰ cloud.com
+# How to use oinｰcloud.com
 
 1. Sign up
    To register and request a signature on a document, you must create an account.
@@ -98,3 +86,15 @@ Many thanks to everyone who contributed to its development and maintenance.<br/>
 
 3.TimeStamps<br/>
 [freeTSA.org](https://freetsa.org/index_en.php)<br/>
+
+## About the Electronic Signatures ##
+
+The applied electronic signature follows the PAdES-T (Signature with Timestamp) level format.<br/>
+
+The signature format for documents is based on PAdES-Basic (adbe.pkcs7.detached),
+using SHA-512 as the hash algorithm and RSA PKCS#1 v1.5 as the signature algorithm.<br/>
+
+The timestamp format is DocTimeStamp, using the same hash and signature algorithms as the document signature.<br/>
+For more details on PDF signature formats, please refer to the PAdES documentation.<br/>
+
+
