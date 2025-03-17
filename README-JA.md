@@ -2,7 +2,8 @@
 <img src="/public/guide/image/inkanCloud_Logo4.png" width=400px>   
 </picture><br/>
 
-#　押印クラウドとは?
+# 押印クラウドとは?
+
 [EN](README.md)
 
 押印クラウド(https://www.oin-cloud.com)はPDF文書を署名者に送付し電子署名とタイムスタンプを付与します。<br/>
