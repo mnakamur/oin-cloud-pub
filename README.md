@@ -1,3 +1,4 @@
+![oin-cloud Log](/public/guide/image/inkanCloud_Logo4.png)
 # About oin-cloud.com?
 
 "oin-cloud(https://www.oin-cloud.com)" is a cloud-service allows you to send PDF documents to signers and add electronic signatures and timestamps.<br/>
@@ -79,9 +80,8 @@ Example documents that can be registered
    The completion link remains valid for 7 days, so be sure to download and save the signed document.<br/>
 
 # About the "oin-cloud" System
-
 oin-cloud.com is developed using various open-source software programs + AWS Amplify + AWS KMS.<br/>
-
+![oin-cloud archtecture](/public/guide/image/oinArch.png)
 **Key Open-Source Technologies Used**<br/>
 Many thanks to everyone who contributed to its development and maintenance.<br/>
 1.Backend<br/>
