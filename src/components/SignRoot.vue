@@ -377,7 +377,12 @@
       <button class="buttonB" v-if="processStep == 1" @click="addFormItem">
         ルートを追加します
       </button>
-      <button class="buttonR" v-if="processStep == 1" @click="submitRootSave" type="submit">
+      <button
+        class="buttonR"
+        v-if="rootItems.length > 1 && processStep == 1"
+        @click="submitRootSave"
+        type="submit"
+      >
         ルートを保存し入力設定・回送を行う
       </button>
       <button
