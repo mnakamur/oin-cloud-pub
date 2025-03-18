@@ -104,7 +104,7 @@ async function sendMail(resultBun, status, errorMailAd = null) {
 
   const signature = `
 --------------------------------------
-押印クラウド
+押印クラウド 
 https://www.oin-cloud.com
 -------------------------------------- `;
   const fullMessageBody = `${messageBody}\n\n${signature}`;

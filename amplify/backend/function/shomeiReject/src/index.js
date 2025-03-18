@@ -130,10 +130,19 @@ async function mailSend(mailAd, itemId, docName, rejectMailer, commentToAuthor) 
       'が' +
       rejectMailer +
       '様に却下されました。下記リンクより確認してください。';
+    const signature = `
+
+      #メールにお心当たりがない場合、誤って着信したものである場合は、全てのデータを削除・破棄してください。\n\n
+      -------------------------------------- 
+      押印クラウド 
+      https://www.oin-cloud.com
+      -------------------------------------- `;
+
     const link = `${linkUrl}/signStatus/${itemId}`;
     var messageBody = `${fixedText}\n\n
-  リンク: ${link}\n\n
-  コメント：${commentToAuthor}`;
+    リンク: ${link}\n\n
+    コメント：${commentToAuthor}\n\n
+     ${signature} `;
     var mail_params = {
       Destination: {
         ToAddresses: [mailAd],

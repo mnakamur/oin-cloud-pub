@@ -207,11 +207,19 @@ async function sendMail(shomeiItem, request, bunsyoResult, bunSig) {
   const encodedName = encodeToBase64(displayName);
 
   const sourceHeader = `=?UTF-8?B?${encodedName}?= <${process.env.CONTACTINFO_MAIL}>`;
+  const signature = `
+
+#メールにお心当たりがない場合、誤って着信したものである場合は、全てのデータを削除・破棄してください。\n\n
+-------------------------------------- 
+押印クラウド 
+https://www.oin-cloud.com
+-------------------------------------- `;
+  const fullMessageBody = `${messageBody}\n\n${signature}`;
 
   const mailParams = {
     Destination: { ToAddresses: [mailAd] },
     Message: {
-      Body: { Text: { Data: messageBody } },
+      Body: { Text: { Data: fullMessageBody } },
       Subject: { Data: `${createUser}様の文書 「${docName}」に関する署名メールが届いています。` },
     },
     Source: sourceHeader,
