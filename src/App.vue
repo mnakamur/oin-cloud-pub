@@ -25,7 +25,7 @@
     <!-- <h3 style="margin-bottom:5px;">-->
     <div class="header">
       　　<img
-        src="../src/assets/inkanCloud_Logo4E.png"
+        src="../src/assets/inkanCloud_Logo4E2.png"
         alt="ロゴ"
         style="
           max-width: 400px;
