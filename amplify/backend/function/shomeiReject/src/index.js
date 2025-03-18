@@ -131,8 +131,8 @@ async function mailSend(mailAd, itemId, docName, rejectMailer, commentToAuthor) 
       rejectMailer +
       '様に却下されました。下記リンクより確認してください。';
     const link = `${linkUrl}/signStatus/${itemId}`;
-    var messageBody = `${fixedText}
-  リンク: ${link}
+    var messageBody = `${fixedText}\n\n
+  リンク: ${link}\n\n
   コメント：${commentToAuthor}`;
     var mail_params = {
       Destination: {
