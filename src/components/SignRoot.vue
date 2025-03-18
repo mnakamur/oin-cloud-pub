@@ -207,7 +207,7 @@
   }
   async function call_shomeiFlow() {
     //const lambdaRes = await invokeLambda('shomeiFlow', { pdfId: query.value.pdfId, routeNo: 0 });
-    const lambdaRes = await invokeLambda('shomeiPDFSign', {
+    const lambdaRes = await invokeLambda('shomeiPdfSign', {
       pdfId: query.value.pdfId,
       routeNo: 0,
       createUserId: desiData.createUserId,
