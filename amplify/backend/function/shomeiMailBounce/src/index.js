@@ -91,7 +91,7 @@ async function sendMail(resultBun, status, errorMailAd = null) {
   let messageBody;
   let subjectMessage;
   if (status == 'sendError') {
-    messageBody = `${createUser}様の文書「${docName}」にて回送先のメールアドレス${errorMailAd}が届きませんでした。メールアドレスを確認してください`;
+    messageBody = `${createUser}様の文書「${docName}」にて回送先のメールアドレス${errorMailAd}が届きませんでした。\n\nメールアドレスを確認してください`;
     subjectMessage = `${createUser}様の文書 「${docName}」に関してメールアドレスエラーが出ています`;
   } else {
     messageBody = `${createUser}様の文書「${docName}」は当サービスで署名できませんでした。文書とステータスをご確認ください`;
