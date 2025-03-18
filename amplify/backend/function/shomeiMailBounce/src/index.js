@@ -102,9 +102,15 @@ async function sendMail(resultBun, status, errorMailAd = null) {
 
   const sourceHeader = `=?UTF-8?B?${encodedName}?= <${process.env.CONTACTINFO_MAIL}>`;
 
+  const signature = `
+--------------------------------------
+押印クラウド
+https://www.oin-cloud.com
+-------------------------------------- `;
+  const fullMessageBody = `${messageBody}\n\n${signature}`;
   const mailParams = {
     Destination: { ToAddresses: [mailAd] },
-    Message: { Body: { Text: { Data: messageBody } }, Subject: { Data: subjectMessage } },
+    Message: { Body: { Text: { Data: fullMessageBody } }, Subject: { Data: subjectMessage } },
     Source: sourceHeader,
     ReplyToAddresses: [process.env.CONTACTINFO_MAIL],
   };
