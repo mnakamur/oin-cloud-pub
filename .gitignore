@@ -68,6 +68,7 @@ amplipushlog.txt
 amplify/backend/function/shomeiMakeX509
 amplify/backend/function/shomeiPdfDel
 amplify/backend/function/shomiErrorCwatch
+src/assets/dummyKeys
 #eslintPrittier系
 .eslintignore
 .prettierignore

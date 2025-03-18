@@ -1,5 +1,5 @@
 <picture>
-<img src="/public/guide/image/inkanCloud_Logo4.png" width=400px>   
+<img src="/public/guide/image/inkanCloud_Logo4E.png" width=400px>   
 </picture><br/>
 
 # About oin-cloud.com?
