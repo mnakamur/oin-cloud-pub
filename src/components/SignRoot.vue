@@ -32,6 +32,7 @@
     userName: '',
     userEmail: '',
     createUserId: '',
+    s3folder: '',
   });
   const processStep = ref(1);
   let isReloading = false;
@@ -99,7 +100,7 @@
     desiData.userName = bunsyo.data.getBunsyo.userName;
     desiData.userEmail = bunsyo.data.getBunsyo.userEmail;
     desiData.createUserId = bunsyo.data.getBunsyo.createUser;
-
+    desiData.s3folder = bunsyo.data.getBunsyo.identityId;
     const initItem = {
       name: desiData.userName,
       email: desiData.userEmail,
@@ -205,8 +206,13 @@
     }
   }
   async function call_shomeiFlow() {
-    const lambdaRes = await invokeLambda('shomeiFlow', { pdfId: query.value.pdfId, routeNo: 0 });
-
+    //const lambdaRes = await invokeLambda('shomeiFlow', { pdfId: query.value.pdfId, routeNo: 0 });
+    const lambdaRes = await invokeLambda('shomeiPDFSign', {
+      pdfId: query.value.pdfId,
+      routeNo: 0,
+      createUserId: desiData.createUserId,
+      s3folder: desiData.s3folder,
+    });
     if (lambdaRes.statusCode && lambdaRes.statusCode < 400) {
       showMessage('文書をルートに回送しました。', 'info');
       desiData.docName += ':回送済み';
@@ -322,7 +328,7 @@
                   type="text"
                   class="c95p"
                   placeholder="Enter name"
-                  :disabled="signdesi.isFormDisabled"
+                  :disabled="index === 0 || signdesi.isFormDisabled"
                 />
                 <div class="error" v-if="errors[index]?.name">
                   {{ errors[index]?.name }}
@@ -337,7 +343,7 @@
                   placeholder="Enter email"
                   pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
                   title="メールアドレス形式で入力してください"
-                  :disabled="signdesi.isFormDisabled"
+                  :disabled="index === 0 || signdesi.isFormDisabled"
                 />
                 <div class="error" v-if="errors[index]?.email">
                   {{ errors[index]?.email }}
@@ -346,7 +352,7 @@
               <td>
                 　　<select
                   :value="item.attribute"
-                  :disabled="signdesi.isFormDisabled"
+                  :disabled="index === 0 || signdesi.isFormDisabled"
                   @input="handleInput(index, 'attribute', $event.target.value)"
                 >
                   <option value="signonly">署名のみ（入力なし）</option>
