@@ -16,6 +16,8 @@
       'Password must have at least 8 characters': 'パスワードは少なくとも8文字以上必要です',
       'Your passwords must match': '同じパスワードになっていません',
       'Incorrect username or password.': 'メールアドレスかパスワードが正しくありません',
+      'User does not exist.': 'このメールアドレスは登録されていません',
+      'Username/client id combination not found.': 'このメールアドレスは登録されていません',
     },
   });
 </script>

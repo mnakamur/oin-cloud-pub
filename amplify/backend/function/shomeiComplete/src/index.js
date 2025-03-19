@@ -150,7 +150,18 @@ async function mailSend(mailAd, itemId, createUser, docName) {
     docName +
     '｣文書への署名処理が完了しました。下記リンクより文書をダウンロードしてください。文書は7日後には参照できなくなります。';
   const link = `${linkUrl}/signComplete/${itemId}`;
-  var messageBody = `${fixedText}\n\nリンク: ${link}`;
+  const signature = `
+#押印クラウドが${createUser}様からの依頼を受けて送信しているメールです
+#メールにお心当たりがない場合、誤って着信したものである場合は、全てのデータを削除・破棄してください。\n\n
+-------------------------------------- 
+押印クラウド 
+https://www.oin-cloud.com
+
+押印クラウドについて・使い方
+https://www.oin-cloud.com/guide/oin-cloudDoc.html　
+-------------------------------------- `;
+
+  var messageBody = `${fixedText}\n\nリンク: ${link}\n\n${signature}`;
   const displayName = '押印クラウド';
   const encodedName = encodeToBase64(displayName);
   const sourceHeader = `=?UTF-8?B?${encodedName}?= <${process.env.CONTACTINFO_MAIL}>`;
