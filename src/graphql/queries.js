@@ -22,6 +22,7 @@ export const getBunsyo = /* GraphQL */ `
       }
       id
       updatedAt
+      owner
       __typename
     }
   }
@@ -48,136 +49,7 @@ export const listBunsyos = /* GraphQL */ `
         createdAt
         id
         updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const getShomei = /* GraphQL */ `
-  query GetShomei($id: ID!) {
-    getShomei(id: $id) {
-      id
-      seq
-      bunsyoShomeiId
-      name
-      mail
-      shomeiNaiyo
-      shomeiStatus
-      certificate
-      timeStampCert
-      shomeiTime
-      commentToAuthor
-      commentToSigner
-      messageId
-      content {
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const listShomeis = /* GraphQL */ `
-  query ListShomeis(
-    $filter: ModelShomeiFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listShomeis(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        seq
-        bunsyoShomeiId
-        name
-        mail
-        shomeiNaiyo
-        shomeiStatus
-        certificate
-        timeStampCert
-        shomeiTime
-        commentToAuthor
-        commentToSigner
-        messageId
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const getContents = /* GraphQL */ `
-  query GetContents($id: ID!) {
-    getContents(id: $id) {
-      pdfId
-      id
-      seq
-      type
-      page
-      width
-      height
-      x
-      Y
-      scale
-      pageHeight
-      size
-      file
-      fileType
-      S3imgKey
-      fontFamily
-      lineHeight
-      lineCount
-      lines
-      text
-      objComment
-      date
-      path
-      shomeiContentId
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const listContents = /* GraphQL */ `
-  query ListContents(
-    $filter: ModelContentsFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listContents(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        pdfId
-        id
-        seq
-        type
-        page
-        width
-        height
-        x
-        Y
-        scale
-        pageHeight
-        size
-        file
-        fileType
-        S3imgKey
-        fontFamily
-        lineHeight
-        lineCount
-        lines
-        text
-        objComment
-        date
-        path
-        shomeiContentId
-        createdAt
-        updatedAt
+        owner
         __typename
       }
       nextToken
@@ -217,6 +89,65 @@ export const bunsyoByCreateUser = /* GraphQL */ `
         createdAt
         id
         updatedAt
+        owner
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const getShomei = /* GraphQL */ `
+  query GetShomei($id: ID!) {
+    getShomei(id: $id) {
+      id
+      seq
+      bunsyoShomeiId
+      name
+      mail
+      shomeiNaiyo
+      shomeiStatus
+      certificate
+      timeStampCert
+      shomeiTime
+      commentToAuthor
+      commentToSigner
+      messageId
+      content {
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+  }
+`;
+export const listShomeis = /* GraphQL */ `
+  query ListShomeis(
+    $filter: ModelShomeiFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listShomeis(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        seq
+        bunsyoShomeiId
+        name
+        mail
+        shomeiNaiyo
+        shomeiStatus
+        certificate
+        timeStampCert
+        shomeiTime
+        commentToAuthor
+        commentToSigner
+        messageId
+        createdAt
+        updatedAt
+        owner
         __typename
       }
       nextToken
@@ -257,6 +188,83 @@ export const shomeiByBunsyo = /* GraphQL */ `
         messageId
         createdAt
         updatedAt
+        owner
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const getContents = /* GraphQL */ `
+  query GetContents($id: ID!) {
+    getContents(id: $id) {
+      pdfId
+      id
+      seq
+      type
+      page
+      width
+      height
+      x
+      Y
+      scale
+      pageHeight
+      size
+      file
+      fileType
+      S3imgKey
+      fontFamily
+      lineHeight
+      lineCount
+      lines
+      text
+      objComment
+      date
+      path
+      shomeiContentId
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+  }
+`;
+export const listContents = /* GraphQL */ `
+  query ListContents(
+    $filter: ModelContentsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listContents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        pdfId
+        id
+        seq
+        type
+        page
+        width
+        height
+        x
+        Y
+        scale
+        pageHeight
+        size
+        file
+        fileType
+        S3imgKey
+        fontFamily
+        lineHeight
+        lineCount
+        lines
+        text
+        objComment
+        date
+        path
+        shomeiContentId
+        createdAt
+        updatedAt
+        owner
         __typename
       }
       nextToken
@@ -306,6 +314,7 @@ export const contentsByShomei = /* GraphQL */ `
         shomeiContentId
         createdAt
         updatedAt
+        owner
         __typename
       }
       nextToken

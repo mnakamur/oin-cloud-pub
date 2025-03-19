@@ -2,7 +2,7 @@
   "AppSyncApiName": "pdfvueampprj",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2024-06-13T05:06:48.126Z",
+  "AuthModeLastUpdated": "2025-03-19T02:41:55.091Z",
   "AuthCognitoUserPoolId": {
     "Fn::GetAtt": [
       "authpdfvueampprj4dde32ec",

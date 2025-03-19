@@ -1,38 +1,45 @@
 # This "input" configures a global authorization rule to enable public access to
 # all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
-input AMPLIFY {
-  globalAuthRule: AuthRule = { allow: public }
-} # FOR TESTING ONLY!
-type bunsyo @model {
+# input AMPLIFY {
+#  globalAuthRule: AuthRule = { allow: public } #ひとつしかルール設定できない
+# }
+# FOR TESTING ONLY!
+type bunsyo
+  @model
+  @auth(
+    rules: [
+      { allow: owner } # 所有者は全権限
+      { allow: public, operations: [read, update] } # 公開ユーザーは読み取り・更新のみ
+    ]
+  ) {
   pdfId: ID!
   createUser: ID!
-    @index(
-      name: "createUser-index"
-      sortKeyFields: ["createdAt"]
-      queryField: "bunsyoByCreateUser"
-    )
+    @index(name: "createUser-index", sortKeyFields: ["createdAt"], queryField: "bunsyoByCreateUser")
   userName: String
   userEmail: String
   docName: String
   bunStatus: String
   pageNum: Int
   shomeiLength: Int
-  docRef:String
-  docRefExp:String
-  identityId:String
+  docRef: String
+  docRefExp: String
+  identityId: String
   createdAt: String!
   shomei: [Shomei] @hasMany
 }
 
-type Shomei @model {
+type Shomei
+  @model
+  @auth(
+    rules: [
+      { allow: owner } # 所有者は全権限
+      { allow: public, operations: [read, update] } # 公開ユーザーは読み取り・更新のみ
+    ]
+  ) {
   id: ID!
   seq: Int
   bunsyoShomeiId: ID!
-    @index(
-      name: "gsi-bunsyo.shomei"
-      sortKeyFields: ["seq"]
-      queryField: "shomeiByBunsyo"
-    )
+    @index(name: "gsi-bunsyo.shomei", sortKeyFields: ["seq"], queryField: "shomeiByBunsyo")
   name: String!
   mail: String
   shomeiNaiyo: String
@@ -42,11 +49,18 @@ type Shomei @model {
   shomeiTime: String
   commentToAuthor: String
   commentToSigner: String
-  messageId:String
+  messageId: String
   content: [Contents] @hasMany
 }
 
-type Contents @model {
+type Contents
+  @model
+  @auth(
+    rules: [
+      { allow: owner } # 所有者は全権限
+      { allow: public, operations: [read, update] } # 公開ユーザーは読み取り・更新のみ
+    ]
+  ) {
   pdfId: ID!
   id: ID!
   seq: String!
@@ -70,6 +84,5 @@ type Contents @model {
   objComment: String
   date: String
   path: [String]
-  shomeiContentId: ID!
-    @index(name: "gsi-Shomei.content", queryField: "contentsByShomei")
+  shomeiContentId: ID! @index(name: "gsi-Shomei.content", queryField: "contentsByShomei")
 }

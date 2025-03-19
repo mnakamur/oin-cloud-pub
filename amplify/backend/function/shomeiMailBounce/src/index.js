@@ -106,6 +106,9 @@ async function sendMail(resultBun, status, errorMailAd = null) {
 --------------------------------------
 押印クラウド 
 https://www.oin-cloud.com
+
+押印クラウドについて・使い方
+https://www.oin-cloud.com/guide/oin-cloudDoc.html　
 -------------------------------------- `;
   const fullMessageBody = `${messageBody}\n\n${signature}`;
   const mailParams = {

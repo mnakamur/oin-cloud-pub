@@ -2,8 +2,11 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateBunsyo = /* GraphQL */ `
-  subscription OnCreateBunsyo($filter: ModelSubscriptionBunsyoFilterInput) {
-    onCreateBunsyo(filter: $filter) {
+  subscription OnCreateBunsyo(
+    $filter: ModelSubscriptionBunsyoFilterInput
+    $owner: String
+  ) {
+    onCreateBunsyo(filter: $filter, owner: $owner) {
       pdfId
       createUser
       userName
@@ -22,13 +25,17 @@ export const onCreateBunsyo = /* GraphQL */ `
       }
       id
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onUpdateBunsyo = /* GraphQL */ `
-  subscription OnUpdateBunsyo($filter: ModelSubscriptionBunsyoFilterInput) {
-    onUpdateBunsyo(filter: $filter) {
+  subscription OnUpdateBunsyo(
+    $filter: ModelSubscriptionBunsyoFilterInput
+    $owner: String
+  ) {
+    onUpdateBunsyo(filter: $filter, owner: $owner) {
       pdfId
       createUser
       userName
@@ -47,13 +54,17 @@ export const onUpdateBunsyo = /* GraphQL */ `
       }
       id
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onDeleteBunsyo = /* GraphQL */ `
-  subscription OnDeleteBunsyo($filter: ModelSubscriptionBunsyoFilterInput) {
-    onDeleteBunsyo(filter: $filter) {
+  subscription OnDeleteBunsyo(
+    $filter: ModelSubscriptionBunsyoFilterInput
+    $owner: String
+  ) {
+    onDeleteBunsyo(filter: $filter, owner: $owner) {
       pdfId
       createUser
       userName
@@ -72,13 +83,17 @@ export const onDeleteBunsyo = /* GraphQL */ `
       }
       id
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onCreateShomei = /* GraphQL */ `
-  subscription OnCreateShomei($filter: ModelSubscriptionShomeiFilterInput) {
-    onCreateShomei(filter: $filter) {
+  subscription OnCreateShomei(
+    $filter: ModelSubscriptionShomeiFilterInput
+    $owner: String
+  ) {
+    onCreateShomei(filter: $filter, owner: $owner) {
       id
       seq
       bunsyoShomeiId
@@ -98,13 +113,17 @@ export const onCreateShomei = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onUpdateShomei = /* GraphQL */ `
-  subscription OnUpdateShomei($filter: ModelSubscriptionShomeiFilterInput) {
-    onUpdateShomei(filter: $filter) {
+  subscription OnUpdateShomei(
+    $filter: ModelSubscriptionShomeiFilterInput
+    $owner: String
+  ) {
+    onUpdateShomei(filter: $filter, owner: $owner) {
       id
       seq
       bunsyoShomeiId
@@ -124,13 +143,17 @@ export const onUpdateShomei = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onDeleteShomei = /* GraphQL */ `
-  subscription OnDeleteShomei($filter: ModelSubscriptionShomeiFilterInput) {
-    onDeleteShomei(filter: $filter) {
+  subscription OnDeleteShomei(
+    $filter: ModelSubscriptionShomeiFilterInput
+    $owner: String
+  ) {
+    onDeleteShomei(filter: $filter, owner: $owner) {
       id
       seq
       bunsyoShomeiId
@@ -150,13 +173,17 @@ export const onDeleteShomei = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onCreateContents = /* GraphQL */ `
-  subscription OnCreateContents($filter: ModelSubscriptionContentsFilterInput) {
-    onCreateContents(filter: $filter) {
+  subscription OnCreateContents(
+    $filter: ModelSubscriptionContentsFilterInput
+    $owner: String
+  ) {
+    onCreateContents(filter: $filter, owner: $owner) {
       pdfId
       id
       seq
@@ -183,13 +210,17 @@ export const onCreateContents = /* GraphQL */ `
       shomeiContentId
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onUpdateContents = /* GraphQL */ `
-  subscription OnUpdateContents($filter: ModelSubscriptionContentsFilterInput) {
-    onUpdateContents(filter: $filter) {
+  subscription OnUpdateContents(
+    $filter: ModelSubscriptionContentsFilterInput
+    $owner: String
+  ) {
+    onUpdateContents(filter: $filter, owner: $owner) {
       pdfId
       id
       seq
@@ -216,13 +247,17 @@ export const onUpdateContents = /* GraphQL */ `
       shomeiContentId
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onDeleteContents = /* GraphQL */ `
-  subscription OnDeleteContents($filter: ModelSubscriptionContentsFilterInput) {
-    onDeleteContents(filter: $filter) {
+  subscription OnDeleteContents(
+    $filter: ModelSubscriptionContentsFilterInput
+    $owner: String
+  ) {
+    onDeleteContents(filter: $filter, owner: $owner) {
       pdfId
       id
       seq
@@ -249,6 +284,7 @@ export const onDeleteContents = /* GraphQL */ `
       shomeiContentId
       createdAt
       updatedAt
+      owner
       __typename
     }
   }

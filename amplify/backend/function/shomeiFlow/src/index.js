@@ -208,11 +208,14 @@ async function sendMail(shomeiItem, request, bunsyoResult, bunSig) {
 
   const sourceHeader = `=?UTF-8?B?${encodedName}?= <${process.env.CONTACTINFO_MAIL}>`;
   const signature = `
-
+#押印クラウドが${createUser}様からの依頼を受けて送信しているメールです
 #メールにお心当たりがない場合、誤って着信したものである場合は、全てのデータを削除・破棄してください。\n\n
 -------------------------------------- 
 押印クラウド 
 https://www.oin-cloud.com
+
+押印クラウドについて・使い方
+https://www.oin-cloud.com/guide/oin-cloudDoc.html　
 -------------------------------------- `;
   const fullMessageBody = `${messageBody}\n\n${signature}`;
 

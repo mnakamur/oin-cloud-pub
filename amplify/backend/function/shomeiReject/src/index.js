@@ -135,7 +135,10 @@ async function mailSend(mailAd, itemId, docName, rejectMailer, commentToAuthor) 
       #メールにお心当たりがない場合、誤って着信したものである場合は、全てのデータを削除・破棄してください。\n\n
       -------------------------------------- 
       押印クラウド 
-      https://www.oin-cloud.com
+　　　https://www.oin-cloud.com
+
+      押印クラウドについて・使い方
+      https://www.oin-cloud.com/guide/oin-cloudDoc.html　
       -------------------------------------- `;
 
     const link = `${linkUrl}/signStatus/${itemId}`;
