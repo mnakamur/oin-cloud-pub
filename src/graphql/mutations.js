@@ -25,7 +25,6 @@ export const createBunsyo = /* GraphQL */ `
       }
       id
       updatedAt
-      owner
       __typename
     }
   }
@@ -54,7 +53,6 @@ export const updateBunsyo = /* GraphQL */ `
       }
       id
       updatedAt
-      owner
       __typename
     }
   }
@@ -83,7 +81,6 @@ export const deleteBunsyo = /* GraphQL */ `
       }
       id
       updatedAt
-      owner
       __typename
     }
   }
@@ -113,7 +110,6 @@ export const createShomei = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      owner
       __typename
     }
   }
@@ -143,7 +139,6 @@ export const updateShomei = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      owner
       __typename
     }
   }
@@ -173,7 +168,6 @@ export const deleteShomei = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      owner
       __typename
     }
   }
@@ -210,7 +204,6 @@ export const createContents = /* GraphQL */ `
       shomeiContentId
       createdAt
       updatedAt
-      owner
       __typename
     }
   }
@@ -247,7 +240,6 @@ export const updateContents = /* GraphQL */ `
       shomeiContentId
       createdAt
       updatedAt
-      owner
       __typename
     }
   }
@@ -284,7 +276,6 @@ export const deleteContents = /* GraphQL */ `
       shomeiContentId
       createdAt
       updatedAt
-      owner
       __typename
     }
   }

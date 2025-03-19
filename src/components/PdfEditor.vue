@@ -1,7 +1,13 @@
 <script setup>
   import { reactive, ref } from 'vue';
   import { addPDF, verifyInPdf } from './utils/PDF';
-  import { onLastPage, onFirstPage, onPageChange, useMsgHandler } from './utils/helper';
+  import {
+    onLastPage,
+    onFirstPage,
+    onPageChange,
+    useMsgHandler,
+    formatToJST,
+  } from './utils/helper';
   import PdfPage from './PdfPage.vue';
 
   import { fetchUserAttributes, fetchAuthSession } from 'aws-amplify/auth';
