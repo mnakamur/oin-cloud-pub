@@ -18,6 +18,10 @@
       'Incorrect username or password.': 'メールアドレスかパスワードが正しくありません',
       'User does not exist.': 'このメールアドレス・パスワードは登録されていません',
       'Username/client id combination not found.': 'このメールアドレスは登録されていません',
+      'Attributes did not conform to the schema: emails: The attribute emails is required':
+        '画面を再度リロードして入力してみてください',
+      'Invalid email address format.': '正しいメールアドレスをいれてください',
+      'Invalid verification code provided, please try again.': '正しい認証コードをいれてください',
     },
   });
 </script>
