@@ -69,8 +69,12 @@ amplify/backend/function/shomeiMakeX509
 amplify/backend/function/shomeiPdfDel
 amplify/backend/function/shomiErrorCwatch
 amplify/backend/function/shomiMailBounce
+amplify/backend/storage/amplifyvuepdf
+amplify/backend/types
+amplify/hooks
 src/assets/dummyKeys
 src/graphql
+.github/
 #eslintPrittier系
 .eslintignore
 .prettierignore
