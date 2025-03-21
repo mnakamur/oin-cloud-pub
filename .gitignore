@@ -59,7 +59,7 @@ amplifytools.xcconfig
 .env
 .env.local
 .env.production
-
+amplify/backend/backend-config.json
 #テスト用モジュール
 amplify/backend/function/shomeiPdfSign/src/index_backup.js
 jizentest.js
