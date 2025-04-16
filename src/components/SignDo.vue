@@ -15,6 +15,8 @@ import { fetchAuthSession } from "aws-amplify/auth";
 import PdfPage from './PdfPage.vue'
 import ObjectContainer from './ObjectContainer.vue'
 import ExplanationSigndo from './ExplanationSigndo.vue';
+import { useI18n } from 'vue-i18n'
+const { t,locale } = useI18n()
 
 const client = generateClient();
 const { errorVisible, infoVisible, infoMessage, showMessage } = useMsgHandler();
@@ -220,12 +222,25 @@ const filteredObjects = (pageIndex) => {
   return allObjects.value.filter((object) => object.page === pageIndex);
 }
 const formattedObjects=()=>{
-  const typeMapping = {
+  let typeMapping  
+  if (locale.value == 'ja')
+{
+  typeMapping = {
     txt: '文字入力',
     image: '画像入力',
     date: '日付入力',
     drawing: '描画入力'
   };
+}
+else
+{
+  typeMapping = {
+    txt: 'text',
+    image: 'image',
+    date: 'date',
+    drawing: 'drawing'
+  };
+}
   return allObjects.value.map
         (obj => ({
           page: obj.page + 1 ,
@@ -265,7 +280,7 @@ async function shomeiDone(){
       showMessage('署名入力が完了していない要素があります')   
       return
     }
-  const userConfirm = shomeiConfirm("承認")
+  const userConfirm = shomeiConfirm(t('承認'))
   if (userConfirm == false){ return}
   
   shomeiButtonStatus.value = false;  
@@ -283,10 +298,10 @@ errorToLambda(createUserAttr.userId,docData.value.pdfFileId,'Signdo','shomeiDone
   async function shomeiKms()
 {
   
-  let lambdaRes = await invokeLambda('shomeiPdfSign',{ pdfId: docData.value.pdfFileId,routeNo:routeNo.value,createUserId:createUserAttr.userId,s3folder:s3folder[1] })
+  let lambdaRes = await invokeLambda('shomeiPdfSign',{ pdfId: docData.value.pdfFileId,routeNo:routeNo.value,createUserId:createUserAttr.userId,s3folder:s3folder[1],locale:locale.value })
   if (lambdaRes.statusCode && lambdaRes.statusCode < 400) {
     　 showMessage('署名依頼をしました','info') 
-       docData.value.docName += ":署名依頼済み"   
+       docData.value.docName += t(":署名依頼済み")   
        shomeiButtonStatus.value = false;
        return true
       } else {
@@ -326,7 +341,7 @@ async function objectToContents(){
       fileType:object.file.type
     }
     } catch (error) {
-  showMessage('画像ファイル保存ができませんでした。もう一度読ませてください')
+  showMessage('イメージ読込ができませんでした。再度実施してください')
   return　false　　
     }
   }  
@@ -368,15 +383,15 @@ if (!commentToAuthor.value)
 {　showMessage('却下時は「発信者へのメッセージ」に理由を記載してください。','info')　　
   　return    
 } 
-const userConfirm = shomeiConfirm("却下")
+const userConfirm = shomeiConfirm(t("却下"))
   if (userConfirm == false){ return}
 shomeiButtonStatus.value = false
 await updateDynamoShomei('reject') 
 let s3folder = decoSignedUrl.match(/protected\/([^\/]+)\//);
-let lambdaRes = await invokeLambda('shomeiReject',{ pdfId: docData.value.pdfFileId,route:routeNo.value,id:createUserAttr.userId,s3folder:s3folder[1] })
+let lambdaRes = await invokeLambda('shomeiReject',{ pdfId: docData.value.pdfFileId,route:routeNo.value,id:createUserAttr.userId,s3folder:s3folder[1],locale:locale.value })
 if (lambdaRes.statusCode && lambdaRes.statusCode < 400)  
    { showMessage('文書を却下して発信者に戻しました。','info')
-   　docData.value.docName += ":却下済み" 　
+   　docData.value.docName += t(":却下済み") 　
      shomeiButtonStatus.value = false;
    }
 else
@@ -398,14 +413,16 @@ function closeSignStatus(){
   rootShowStatus.value = false
 }     
 function closeWindow() {
-  const userConfirmed = window.confirm("画面を終了してもよいですか？");
+  const userConfirmed = window.confirm(t('画面を終了してもよいですか？'));
   if (userConfirmed) {
     router.replace({name:'signin'})
     window.close();
   }
 }
 function shomeiConfirm(status) {
-  const userConfirmed = window.confirm(`文書を${status}します\nよろしければOKを押してください`);
+  const msg = locale.value == 'ja'? `文書を${status}します\nよろしければOKを押してください`:`Doc will be ${status}\n Press OK to proceed if it is correct.`;
+  //const userConfirmed = window.confirm(t('文書を{status}します\nよろしければOKを押してください', { status }));
+  const userConfirmed = window.confirm(msg);
   if (userConfirmed) {
     　return true
          } 
@@ -420,53 +437,51 @@ function shomeiConfirm(status) {
  <div class="container"> 
  <div v-if = "shomeiButtonStatus">
     <h3> {{ shomeisyaName }} 様</h3>
-    <p>文書の内容を確認してください。<strong>文書が見れるのは送付されてから7日間です。</strong>
-    <button @click="showModal">操作説明を見る</button><br/>  
+    <p>{{$t('文書の内容を確認してください')}}<strong>{{$t('当該文書が見れるのは、文書が回送されてから7日間です。')}}</strong>
+    <button @click="showModal">{{$t('操作説明を見る')}}</button><br/>  
       <ExplanationSigndo
         v-if="isModalVisible"
         @close="isModalVisible = false"
         :isVisible="isModalVisible"
       />
        <div v-if="inputExplanationVisible" class="comment_input">
-         入力内容がありますので、それぞれの入力コメントに沿って入力してください
+         {{$t('入力内容がありますので、それぞれの入力コメントに沿って入力してください')}}
          <div v-for="(item, index) in formattedObjects(index)" :key="index">
-         <p>ページ
-            <span class="red_text">{{ item.page }}</span>
-            に
+         <p><span class="red_text">{{ item.page }}</span>
+            {{$t('ページに')}}
             <span class="red_text">{{ item.formattedType }}</span> 
-            の入力があります。内容は  
+            {{$t('の入力があります。内容は')}}  
             <span class="red_text">{{ item.objComment }}</span>
-            です。
-            <span v-if="item.formattedType === '文字入力'">
+            {{$t('です。')}}
+            <span v-if="item.formattedType === '文字入力' || item.formattedType === 'text'">
             <span class="red_text">{{ item.lineCount }}</span>
-            行入力できます。文字の大きさは入力された文字数で自動的に調整します    
+            {{$t('行入力できます。文字の大きさは入力された文字数で自動的に調整します')}}    
         　　</span>
       　　　</p>
          </div>
       </div>
-       文書内容を確認し、OKであれば承認してください。電子的に署名されます<br>
-       却下の必要がある場合は「発信者へのメッセージ」に理由を記載して
-       却下ボタンを押してください
+       {{$t('文書内容を確認し、OKであれば承認してください。電子的に署名されます')}}<br>
+       {{$t('却下の必要がある場合は「発信者へのメッセージ」に理由を記載して却下ボタンを押してください')}}
     </p>
   </div>  
-    <h4 :style="shomeiButtonStatus ? {} : { color: 'blue', fontSize: '20px' }">文書名：{{docData.docName}}</h4>
-    <h4>発信者：{{createUserAttr.userName}}</h4>
+    <h4 :style="shomeiButtonStatus ? {} : { color: 'blue', fontSize: '20px' }">{{$t('文書名')}}：{{docData.docName}}</h4>
+    <h4>{{$t('発信者')}}：{{createUserAttr.userName}}</h4>
    <div class="opearea">
-    　<h4 style="float:left">ルート情報確認</h4>
-    　<button class="button" @click="rootShow">ルート確認</button>
+    　<h4 style="float:left">{{$t('ルート情報確認')}}</h4>
+    　<button class="button" @click="rootShow">{{$t('ルート確認')}}</button>
 
     <div v-if="commentToSigner" class="comment_signer">
-      <h4>発信者からのメッセージ</h4>
+      <h4>{{$t('発信者からのメッセージ')}}</h4>
       <p>{{ commentToSigner }}</p>  
     </div>
     <div>
-      <h4>発信者へのメッセージ</h4>
+      <h4>{{$t('発信者へのメッセージ')}}</h4>
       <textarea class="comment_author" v-model="commentToAuthor"></textarea>
     </div>
-    <button type="button" v-if = "shomeiButtonStatus" class="buttonB" @click="shomeiDone">承認・署名する</button>
-    <button type="button" v-if = "shomeiButtonStatus" class="buttonR" @click="rejectDoc">却下する</button>
-    <button type="button" v-if = "shomeiButtonStatus" class="buttonD" @click="handlePdfDownload">署名前文書をダウンロード</button>
-    <button type="button" v-if="!shomeiButtonStatus" class="button" @click="closeWindow">画面クローズ</button>
+    <button type="button" v-if = "shomeiButtonStatus" class="buttonB" @click="shomeiDone">{{$t('承認・署名する')}}</button>
+    <button type="button" v-if = "shomeiButtonStatus" class="buttonR" @click="rejectDoc">{{$t('却下する')}}</button>
+    <button type="button" v-if = "shomeiButtonStatus" class="buttonD" @click="handlePdfDownload">{{$t('署名前文書をダウンロード')}}</button>
+    <button type="button" v-if="!shomeiButtonStatus" class="button" @click="closeWindow">{{$t('画面クローズ')}}</button>
   
   </div>
   <signstatus v-if="rootShowStatus"
@@ -525,7 +540,7 @@ function shomeiConfirm(status) {
                 </div>
             </div>
                    
-      <div v-if="isDownloading" class="blinking-bar">文書をダウンロード中です</div>  
+      <div v-if="isDownloading" class="blinking-bar">{{$t('文書をダウンロード中です')}}</div>  
       <div v-if="infoVisible" :class="{'info-popup': infoVisible, 'error-popup': errorVisible}">
       {{ infoMessage }}
       </div>

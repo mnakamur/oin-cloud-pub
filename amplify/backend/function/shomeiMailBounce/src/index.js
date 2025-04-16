@@ -14,112 +14,128 @@ Amplify Params - DO NOT EDIT */
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
-const { DynamoDBDocument } = require('@aws-sdk/lib-dynamodb');
-const { DynamoDB } = require('@aws-sdk/client-dynamodb');
-const { SES } = require('@aws-sdk/client-ses');
-var ses = new SES({ region: 'us-east-1' });
+const { DynamoDBDocument } = require("@aws-sdk/lib-dynamodb");
+const { DynamoDB } = require("@aws-sdk/client-dynamodb");
+const { SES } = require("@aws-sdk/client-ses");
+var ses = new SES({ region: "us-east-1" });
 const dynamoDB = DynamoDBDocument.from(new DynamoDB());
 
 exports.handler = async (event) => {
-  const eventBody = event.Records[0].body;
-  const bodyObj = JSON.parse(eventBody);
-  let status;
+	const eventBody = event.Records[0].body;
+	const bodyObj = JSON.parse(eventBody);
+	let status;
 
-  if (bodyObj.notificationType == 'Bounce') {
-    status = 'sendError';
-    await mailBounceProcess(bodyObj.mail.messageId, bodyObj.mail.destination[0], status);
-  }
-  if (bodyObj.notificationType == 'signError') {
-    status = 'signError';
-    await signErrorProcess(bodyObj.pdfId, bodyObj.routeNo, status);
-  }
-  return {
-    statusCode: 200,
-  };
+	if (bodyObj.notificationType == "Bounce") {
+		status = "sendError";
+		await mailBounceProcess(
+			bodyObj.mail.messageId,
+			bodyObj.mail.destination[0],
+			status
+		);
+	}
+	if (bodyObj.notificationType == "signError") {
+		status = "signError";
+		await signErrorProcess(bodyObj.pdfId, bodyObj.routeNo, status);
+	}
+	return {
+		statusCode: 200,
+	};
 };
 async function mailBounceProcess(messageId, errorMailAd, status) {
-  const shomeiId = await shomeiScan(messageId);
-  const bunsyoId = await shomeiStatusUpdate(shomeiId, status);
-  const resultBun = await updateBunsyo(bunsyoId, status);
-  await sendMail(resultBun, status, errorMailAd);
+	const shomeiId = await shomeiScan(messageId);
+	const bunsyoId = await shomeiStatusUpdate(shomeiId, status);
+	const resultBun = await updateBunsyo(bunsyoId, status);
+	await sendMail(resultBun, status, errorMailAd);
 }
 async function signErrorProcess(pdfId, routeNo, status) {
-  const shomeiId = pdfId + routeNo;
-  const bunsyoId = await shomeiStatusUpdate(shomeiId, status);
-  const resultBun = await updateBunsyo(bunsyoId, status);
-  await sendMail(resultBun, status);
+	const shomeiId = pdfId + routeNo;
+	const bunsyoId = await shomeiStatusUpdate(shomeiId, status);
+	const resultBun = await updateBunsyo(bunsyoId, status);
+	await sendMail(resultBun, status);
 }
 async function shomeiScan(messageId) {
-  const shomei_params = {
-    TableName: process.env.API_PDFVUEAMPPRJ_SHOMEITABLE_NAME,
-    FilterExpression: 'messageId = :messageId',
-    ExpressionAttributeValues: {
-      ':messageId': messageId,
-    },
-  };
-  const shomeiScanRes = await dynamoDB.scan(shomei_params);
-  return shomeiScanRes.Items[0].id;
+	const shomei_params = {
+		TableName: process.env.API_PDFVUEAMPPRJ_SHOMEITABLE_NAME,
+		FilterExpression: "messageId = :messageId",
+		ExpressionAttributeValues: {
+			":messageId": messageId,
+		},
+	};
+	const shomeiScanRes = await dynamoDB.scan(shomei_params);
+	return shomeiScanRes.Items[0].id;
 }
 async function shomeiStatusUpdate(shomeiId, status) {
-  const update_params = {
-    TableName: process.env.API_PDFVUEAMPPRJ_SHOMEITABLE_NAME,
-    Key: { id: shomeiId },
-    UpdateExpression: 'set #a = :x,#b =:y', // 属性は#から始まるバインド変数、値は:から始まるバインド変数
-    ExpressionAttributeNames: { '#a': 'shomeiStatus', '#b': 'updatedAt' }, // 属性名はname
-    ExpressionAttributeValues: { ':x': status, ':y': new Date().toISOString() },
-    ReturnValues: 'ALL_NEW',
-  };
-  const shomeiUpdateRes = await dynamoDB.update(update_params);
-  return shomeiUpdateRes.Attributes.bunsyoShomeiId;
+	const update_params = {
+		TableName: process.env.API_PDFVUEAMPPRJ_SHOMEITABLE_NAME,
+		Key: { id: shomeiId },
+		UpdateExpression: "set #a = :x,#b =:y", // 属性は#から始まるバインド変数、値は:から始まるバインド変数
+		ExpressionAttributeNames: { "#a": "shomeiStatus", "#b": "updatedAt" }, // 属性名はname
+		ExpressionAttributeValues: { ":x": status, ":y": new Date().toISOString() },
+		ReturnValues: "ALL_NEW",
+	};
+	const shomeiUpdateRes = await dynamoDB.update(update_params);
+	return shomeiUpdateRes.Attributes.bunsyoShomeiId;
 }
 async function updateBunsyo(bunsyoId, status) {
-  const updateBun_params = {
-    TableName: process.env.API_PDFVUEAMPPRJ_BUNSYOTABLE_NAME,
-    Key: { id: bunsyoId },
-    UpdateExpression: 'set #a = :x,#b=:y', // 属性は#から始まるバインド変数、値は:から始まるバインド変数
-    ExpressionAttributeNames: { '#a': 'bunStatus', '#b': 'updatedAt' }, // 属性名はname
-    ExpressionAttributeValues: { ':x': status, ':y': new Date().toISOString() },
-    ReturnValues: 'ALL_NEW',
-  };
-  const result_bun = await dynamoDB.update(updateBun_params);
-  return result_bun.Attributes;
+	const updateBun_params = {
+		TableName: process.env.API_PDFVUEAMPPRJ_BUNSYOTABLE_NAME,
+		Key: { id: bunsyoId },
+		UpdateExpression: "set #a = :x,#b=:y", // 属性は#から始まるバインド変数、値は:から始まるバインド変数
+		ExpressionAttributeNames: { "#a": "bunStatus", "#b": "updatedAt" }, // 属性名はname
+		ExpressionAttributeValues: { ":x": status, ":y": new Date().toISOString() },
+		ReturnValues: "ALL_NEW",
+	};
+	const result_bun = await dynamoDB.update(updateBun_params);
+	return result_bun.Attributes;
 }
 async function sendMail(resultBun, status, errorMailAd = null) {
-  const mailAd = resultBun.userEmail;
-  const docName = resultBun.docName;
-  const createUser = resultBun.userName;
-  let messageBody;
-  let subjectMessage;
-  if (status == 'sendError') {
-    messageBody = `${createUser}様の文書「${docName}」にて回送先のメールアドレス${errorMailAd}が届きませんでした。\n\nメールアドレスを確認してください`;
-    subjectMessage = `${createUser}様の文書 「${docName}」に関してメールアドレスエラーが出ています`;
-  } else {
-    messageBody = `${createUser}様の文書「${docName}」は当サービスで署名できませんでした。文書とステータスをご確認ください`;
-    subjectMessage = `${createUser}様の文書 「${docName}」に関して署名エラーが出ています`;
-  }
-  const displayName = '押印クラウドエラー通知';
-  const encodedName = encodeToBase64(displayName);
+	const mailAd = resultBun.userEmail;
+	const docName = resultBun.docName;
+	const createUser = resultBun.userName;
+	let messageBody;
+	let subjectMessage;
+	if (status == "sendError") {
+		messageBody = `  ${createUser}様の文書「${docName}」にて回送先のメールアドレス${errorMailAd}が届きませんでした。\n　メールアドレスを確認してください\n
+    The document “${docName}” from ${createUser} could not be delivered to the email address ${errorMailAd}.
+    Please check the email address.`;
+		subjectMessage = `Mail Address Error :${createUser}様の文書 「${docName}」に関してメールアドレスエラーが出ています`;
+	} else {
+		messageBody = `  ${createUser}様の文書「${docName}」は当サービスで署名できませんでした。文書とステータスをご確認ください\n\n
+    The document “${docName}” submitted by ${createUser} could not be signed through our service.
+    Please check the document and its status.`;
+		subjectMessage = `Sign Error :${createUser}様の文書 「${docName}」に関して署名エラーが出ています`;
+	}
+	const displayName = "Oin-cloud Error Info:押印クラウドエラー通知";
+	const encodedName = encodeToBase64(displayName);
 
-  const sourceHeader = `=?UTF-8?B?${encodedName}?= <${process.env.CONTACTINFO_MAIL}>`;
+	const sourceHeader = `=?UTF-8?B?${encodedName}?= <${process.env.CONTACTINFO_MAIL}>`;
 
-  const signature = `
+	const signature = `
+#押印クラウドが${createUser}様からの依頼を受けて送信しているメールです
+#メールにお心当たりがない場合、誤って着信したものである場合は、全てのデータを削除・破棄してください。\n\n
+#This email was sent by Oin Cloud on behalf of ${createUser}.
+#If you are not the intended recipient or believe you have received this email in error, 
+#please delete and discard all associated data.  
 --------------------------------------
-押印クラウド 
+Oin-cloud:押印クラウド 
 https://www.oin-cloud.com
 
-押印クラウドについて・使い方
+about Oin-cloud:押印クラウドについて・使い方
 https://www.oin-cloud.com/guide/oin-cloudDoc.html　
 -------------------------------------- `;
-  const fullMessageBody = `${messageBody}\n\n${signature}`;
-  const mailParams = {
-    Destination: { ToAddresses: [mailAd] },
-    Message: { Body: { Text: { Data: fullMessageBody } }, Subject: { Data: subjectMessage } },
-    Source: sourceHeader,
-    ReplyToAddresses: [process.env.CONTACTINFO_MAIL],
-  };
-  const result = await ses.sendEmail(mailParams);
-  return result;
+	const fullMessageBody = `${messageBody}\n\n${signature}`;
+	const mailParams = {
+		Destination: { ToAddresses: [mailAd] },
+		Message: {
+			Body: { Text: { Data: fullMessageBody } },
+			Subject: { Data: subjectMessage },
+		},
+		Source: sourceHeader,
+		ReplyToAddresses: [process.env.CONTACTINFO_MAIL],
+	};
+	const result = await ses.sendEmail(mailParams);
+	return result;
 }
 function encodeToBase64(str) {
-  return Buffer.from(str, 'utf-8').toString('base64');
+	return Buffer.from(str, "utf-8").toString("base64");
 }

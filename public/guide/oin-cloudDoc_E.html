@@ -1,0 +1,256 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">-->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+
+<title>押印クラウドＢバージョン| 押印クラウドとは</title>
+
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+
+<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Noto+Sans|Pathway+Gothic+One|Roboto+Condensed" rel="stylesheet">
+<link rel="stylesheet" media="all" href="common/common.css" />
+<script type="text/javascript" src="common/js/heightLine.js"></script>
+<script type="text/javascript" src="common/js/smooth-scroll.js"></script>
+<link href="https://unpkg.com/modal-video@latest/css/modal-video.min.css" rel="stylesheet">
+<script src="https://unpkg.com/modal-video@latest/js/modal-video.min.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    new ModalVideo('.js-modal-video');
+  });
+</script>
+
+
+</head>
+
+<body id="top">
+
+<div id="wrapper">
+
+<!-- header/ -->
+<div class="headerWrapper">
+    <div class="container clearfix">
+    <div class="headerLogo indent fLeft"><h1><a href="#" onclick="window.close()">押印クラウド</a></h1></div>
+    <div class="headerCatch fLeft"><h4>PDF文書に電子署名を追加</h4></div>
+  </div>
+
+
+<!-- contents wrapper/ -->
+<div id="containerWrapper_html" class="clearfix">
+        <div class="container">
+        <p class="txt18 tBold"><a href="./oin-cloudDoc.html">JA</a></p>
+         <div id="sectionIntroduction">
+            <div class="container pad-t10">
+                <h3 class="tCenter mrgn-b10">About oin-cloud<span>INTRODUCTION</span></h3>
+
+                <div class="sectionCatch tLeft pad-b20 mrgn-l30">
+                    "oin-cloud"(https://www.oin-cloud.com) is a cloud-service<br> 
+                    ・allows you to send PDF documents to signers and add electronic signatures and timestamps.<br/>
+・add text inputs, stamp images, dates, and hand-drawn signatures when applying an electronic signature.<br>
+*"Oin"[Ōin] means affixing a personal or corporate seal to a document to indicate approval, consent, or authorization in Japanese.<br>                    
+This is just a "private" electronic signature cloud service.<br>
+The reasons are as follows<br>
+                    <p class="tBold">
+                        1.The electronic certificates used for signing are "self-signed" certificates generated with AWS KMS<br>
+                        2.The timestamping service is also based on an open-source timestamping solution (https://freetsa.org/index_en.php).</p>
+                    *Because of this, when viewing a signed document in Adobe Acrobat, a message stating<br>
+                    "Signature validity is unknown" may appear.<br>
+                    
+                  <!---  ＊電子署名法では、</br>
+                    ＊PDFの電子署名規約  https://www.moj.go.jp/ONLINE/CERTIFICATION/GUIDE/guide02.html
+                    そのため、電子署名を試験的に見るためのみにお使いください。<br>-->
+                    
+                   <p class="mrgn-t20"> About the Electronic Signatures</p>
+                   The applied electronic signature follows the PAdES-T (Signature with Timestamp) level format.<br>
+                   The signature format for documents is based on PAdES-Basic (adbe.pkcs7.detached),<br>
+                   using SHA-512 as the hash algorithm and RSA PKCS#1 v1.5 as the signature algorithm.<br>
+                   The timestamp format is DocTimeStamp, using the same hash and signature algorithms as the document signature.<br>
+                   For more details on PDF signature formats, please refer to the <a href="https://ja.wikipedia.org/wiki/PAdES" alt="padEs">PAdES documentation.</a><br>
+                </div>
+                <h4  id="pdfspec" class="tCenter mrgn-t20"><span>Supported PDF Document Specifications</span></h4>
+                <div class="sectionCatch tLeft pad-b20 mrgn-l30">
+                    Documents that cannot be registered<br>
+1.Non-PDF documents<br>
+2.Password-protected PDFs<br>
+3.Already signed PDFs<br>
+4.PDF over 2MB<br>
+5.PDFs containing form fields<br>
+6.PDFs created or modified using the latest Adobe Acrobat<br>
+(This service does not support streams and PDFs utilizing features from version 1.5 or later cannot currently be registered.Documents created using other PDF editors,such as latest PDFElement, are also not supported.)<br>
+Example documents that can be registered<br>
+　1.A PDF exported as a PDF/XSP document from a document created in WORD or EXCEL.<br>
+　2.PDFs exported from OpenOffice or LibreOffice.<br>    
+                </div>
+                <h4></h4>
+            </div>
+        </div>
+        <!-- /introduction -->
+
+    </div>
+    <!-- /contents box -->
+     
+     <!-- flow/ -->
+
+    <div id="sectionFlow">
+        <div class="container pad-t20">
+            <h3 class="tCenter">How to use oin ｰ cloud.com<span>FLOW</span></h3>
+            <div>
+                <ul class="clearfix tCenter">
+                    <li><h4>1．Sign up</h4>
+                    <p>To register and request a signature on a document, you must create an account.
+                        Register using your email address and password.<br>
+                        A verification code will be sent to your email. Enter the code to complete the registration.</p>
+                    <button class="js-modal-video commonBtn" data-video-url="https://www.oin-cloud.com/guide/image/1_oincloud_account.mp4">video(8 sec)</button>
+                    The video is explained in Japanese only.<br>
+                    <!--<video width="240" height="130" ontrolsList="nodownload" src="image/1_oincloud_account.mp4" poster="image/dougaBtn.png" controls></video>-->
+                    </li>
+                    <li><h4>2．Profile Setup（option）</h4>
+                    <p>Register your name and company name (the registered company name + name will be displayed when forwarding documents).</p>
+                    <button class="js-modal-video commonBtn" data-video-url="https://www.oin-cloud.com/guide/image/2_oincloud_profile.mp4">video(8 sec)</button>
+                　　</li>
+                    <li><h4>3. Register a PDF Document</h4>
+                    <p> Upload the document to be signed (PDF only, max file size: 2MB).<br/>
+                        Only one document can be registered for signing; attachments are not supported.</p>
+                        <button class="js-modal-video commonBtn" data-video-url="https://www.oin-cloud.com/guide/image/3_oincloud_pdfRead.mp4">video(9 sec)</button>    
+                    </li>
+                    <li><h4>4. Create a Signature Route</h4>
+                        <p>Add signers who need to sign the document.</br>
+                            Set each signers name, email address, and signature attributes (whether they need to add additional inputs).</p>
+                        <button class="js-modal-video commonBtn" data-video-url="https://www.oin-cloud.com/guide/image/4_oincloud_routeMake.mp4">video(12 sec)</button>
+                    </li>
+                    <li><h4>5. Configure Signature Inputs</h4>
+                    <p> Use this step if text fields, stamp images, or signature dates need to be entered during signing</br>
+                        After saving the signature route, use click and drag & drop to specify input locations on the document.</br>
+                        　　Each signer can have multiple input fields assigned.</p>
+                <button class="js-modal-video commonBtn" data-video-url="https://www.oin-cloud.com/guide/image/5_oincloud_inputDefine.mp4">video(27 sec)</button>
+                    </li>
+                    <li><h4>6. Send the Document</h4>
+                        <p>The document will be forwarded in the order specified in the signature route.</p>
+                        <button class="js-modal-video commonBtn" data-video-url="https://www.oin-cloud.com/guide/image/6_oincloud_routeGo.mp4">video(4 sec)</button>
+                    </li>
+                    <li><h4>7. Input, and Sign the Document</h4>
+                        <p>Signers will receive a signature request email from oin-cloud.</br>
+                            By clicking the link in the email, they can open the document, review its contents, input necessary information, and sign it.</br>
+                        The document link is valid for 7 days after being sent.</p>
+                        <button class="js-modal-video commonBtn" data-video-url="https://www.oin-cloud.com/guide/image/7_oincloud_pdfSign.mp4">video(13 sec)</button>    
+                    </li>
+                    <li><h4>8. Rejecting a Document</h4>
+                        <p>If there are any issues with the document, the signer can reject it by providing a reason.<br>
+                            A rejection email will be sent to the document creator. 
+                        </p>
+                    </li>
+                    <li><h4>9．Completing the Signature Process</h4>
+                        <p>Once all signers have completed their signatures, an email confirming completion will be sent to all parties in the route.</br>
+                            By clicking the link in the email, users can access the signed document.</br>
+                            The completion link remains valid for 7 days, so be sure to download and save the signed document.</p>
+                    </li>
+                    </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- /flow -->
+
+    <div id="sectionPriceLink"></div>
+    <div id="sectionPrice" class="pad-t50">
+        <div class="container">
+        <h3 class="tCenter mrgn-b20">About the "oin-cloud" System<span>system design</span></h3>
+
+        <div class="sectionCatch tLeft pad-l50">
+            oin-cloud.com is developed using various open-source software programs + AWS Amplify + AWS KMS.<br>
+        <img class="mrgn-l10p" src="../guide/image/oinArch.png" width="700" height="500" alt="oin-cloudのアーキテクチャ">
+
+<p>Key Open-Source Technologies Used</p>
+Many thanks to everyone who contributed to its development and maintenance.<br>
+1.Backend<br>
+     <p>node-signpdf<a href="https://github.com/vbuch/node-signpdf" target="_blank">(https://github.com/vbuch/node-signpdf)</a></p>
+     <p>node-forge<a href="https://github.com/digitalbazaar/forge" target="_blank"> (https://github.com/digitalbazaar/forge)</a></p>
+2.Frontend<br>
+     <p>Pdf-editor<a href="https://github.com/Perfect0B0D/Pdf-editer?tab=readme-ov-file" target="_blank">(https://github.com/Perfect0B0D/Pdf-editer?tab=readme-ov-file)</a></p>
+     <p>Pdf-editor vue version<a href="https://github.com/LibreSign/vue-pdf-editor" target="_blank">(https://github.com/LibreSign/vue-pdf-editor)</a></p>
+3.TimeStamps<br>
+　<a href="https://freetsa.org/index_en.php" target="_blank">freeTSA.org　(https://freetsa.org/index_en.php)</a><br>
+
+<div class="tBold mrgn-t10">oin-cloud.com github（<a href="https://github.com/mnakamur/oin-cloud-pub"target="_blank">https://github.com/mnakamur/oin-cloud-pub</a>）</div>
+
+
+        </div>
+
+         </div>
+    </div>
+      
+<!-- /contents wrapper -->
+
+<!-- footer/ -->
+<div id="footerWrapper">
+    <div class="footerNaviWrapper pad-t30 pad-b30">
+        <div class="container">
+        </div>
+    </div>
+    <div class="footerCopyrightWrapper pad-t30 pad-b30">
+        <div class="container clearfix">
+            <div class="footerNaviBox fRight">
+                <ul>
+                    <li><a href="https://www.market-interface.co.jp">会社概要</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /footer -->
+
+</div>
+
+<!-- script/ -->
+    <script src="common/js/jquery.min.js"></script>
+    <!--<script src="common/js/jquery.easing.min.js"></script>
+    <script>
+      //$.noConflict();
+    </script>-->
+
+    <!--<script type="text/javascript">
+    $(function() {
+
+        $(window).on('scroll', function() {
+        		if ($(this).scrollTop() > 68) {//固定するまでの距離
+        			$('.gNaviWrapper').addClass('fixed');
+        		} else {
+        			$('.gNaviWrapper').removeClass('fixed');
+        		}
+        	});
+
+        	$('a[href^=#]').click(function() {
+        		var headerHight = 0; //ヘッダの高さ
+        		if ( !$(".fixed").is(":visible") ) {// 固定するクラスが見つからない(固定されていない場合は)
+        			headerHight = $(".gNaviWrapper").height();// スクロール後に固定されるナビの高さをヘッダーの高さにする
+        		}
+        		var speed = 800; // スクロールの速度ミリ sec
+        		var href= $(this).attr("href");// アンカーの値取得
+        		var target = $(href == "#" || href == "" ? 'html' : href);// 移動先を取得
+        		var position = target.offset().top-headerHight;// 移動先を数値で取得してヘッダーの高さ分ずらす
+        		$('body,html').animate({scrollTop:position}, speed, 'easeOutExpo');
+        		return false;
+        	});
+
+	});
+    </script>
+
+    <script>
+	    smoothScroll.init() ;
+    </script>
+    <script type="text/javascript">
+    //　イメージポップアップ表示
+    function ImageUp() {
+    window.open("./user_rule.html","window1","width=1000,height=200,scrollbars=1");
+    }
+  </script>
+
+ /script -->
+
+</body>
+</html>

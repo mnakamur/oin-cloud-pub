@@ -1,74 +1,84 @@
-import { readAsArrayBuffer, readAsPDF, readAsDataURL, readAsText } from './asyncReader.js';
-import { fetchFont, getAsset } from './prepareAssets';
-import { noop } from './helper.js';
-import { textToPdf } from './makeTextPDF';
+import {
+	readAsArrayBuffer,
+	readAsPDF,
+	readAsDataURL,
+	readAsText,
+} from "./asyncReader.js";
+import { fetchFont, getAsset } from "./prepareAssets";
+import { noop } from "./helper.js";
+import { textToPdf } from "./makeTextPDF";
 //add 20240802
 export async function addPDF(file, allObjects, docData) {
-  try {
-    const pdf = await readAsPDF(file);
-    docData.value.pdfFile = file;
-    docData.value.numPages = pdf.numPages;
-    file.name && (docData.value.docName = file.name.split('.').slice(0, -1).join('.'));
-    docData.value.pages = Array(pdf.numPages)
-      .fill()
-      .map((_, i) => pdf.getPage(i + 1));
+	try {
+		const pdf = await readAsPDF(file);
+		docData.value.pdfFile = file;
+		docData.value.numPages = pdf.numPages;
+		file.name &&
+			(docData.value.docName = file.name.split(".").slice(0, -1).join("."));
+		docData.value.pages = Array(pdf.numPages)
+			.fill()
+			.map((_, i) => pdf.getPage(i + 1));
 
-    allObjects.value.splice(0, allObjects.value.length);
-    const pagesViewports = await Promise.all(
-      Array(pdf.numPages)
-        .fill()
-        .map(async (_, i) => {
-          const page = await pdf.getPage(i + 1); // ページは1から始まる
-          const viewport = page.getViewport({ scale: 1 });
-          return { width: viewport.width, height: viewport.height }; // 各ページの幅を返す
-        })
-    );
-    let scale = 1.0;
-    const maxWidth = Math.max(...pagesViewports.map((vp) => vp.width));
-    maxWidth * 1.5 < window.innerWidth ? (scale = 1.2) : (scale = 1.0);
-    //Math.max(...pagesWidths)*1.5 < window.innerWidth? scale=1.2 : scale=1.0;
-    /*pdf.getPage().map(async(pageIndex) => { 
+		allObjects.value.splice(0, allObjects.value.length);
+		const pagesViewports = await Promise.all(
+			Array(pdf.numPages)
+				.fill()
+				.map(async (_, i) => {
+					const page = await pdf.getPage(i + 1); // ページは1から始まる
+					const viewport = page.getViewport({ scale: 1 });
+					return { width: viewport.width, height: viewport.height }; // 各ページの幅を返す
+				})
+		);
+		let scale = 1.0;
+		const maxWidth = Math.max(...pagesViewports.map((vp) => vp.width));
+		maxWidth * 1.5 < window.innerWidth ? (scale = 1.2) : (scale = 1.0);
+		//Math.max(...pagesWidths)*1.5 < window.innerWidth? scale=1.2 : scale=1.0;
+		/*pdf.getPage().map(async(pageIndex) => { 
             const eachPage = await pdf.getPage(1);
             const viewport = eachPage.getViewport({ scale: 1 });
         //}) */
-    docData.value.pagesScale = Array(pdf.numPages).fill(scale);
-    docData.value.pagesViewports = pagesViewports;
-    return pdf;
-  } catch (e) {
-    console.log('Failed to add pdf. Please try again.', e);
-    return false;
-  }
+		docData.value.pagesScale = Array(pdf.numPages).fill(scale);
+		docData.value.pagesViewports = pagesViewports;
+		return pdf;
+	} catch (e) {
+		console.log("Failed to add pdf. Please try again.", e);
+		return false;
+	}
 }
 export async function verifyInPdf(input_pdf) {
-  const inpdf = await readAsText(input_pdf);
-  const chk_sig = inpdf.indexOf('/Sig');
-  const chk_acroform = inpdf.indexOf('/AcroForm');
-  const trailerStart = inpdf.lastIndexOf('trailer');
-  const trailer = inpdf.slice(trailerStart, inpdf.length - 6);
+	const inpdf = await readAsText(input_pdf);
+	const chk_sig = inpdf.indexOf("/Sig");
+	const chk_acroform = inpdf.indexOf("/AcroForm");
+	const trailerStart = inpdf.lastIndexOf("trailer");
+	const trailer = inpdf.slice(trailerStart, inpdf.length - 6);
 
-  let chk_trailer = -1;
+	let chk_trailer = -1;
 
-  if (trailer.includes('Root') && trailer.includes('Info') && trailer.includes('startxref')) {
-    chk_trailer = 1;
-  }
+	if (
+		trailer.includes("Root") &&
+		trailer.includes("Info") &&
+		trailer.includes("startxref")
+	) {
+		chk_trailer = 1;
+	}
 
-  const chk_xref = inpdf.indexOf('xref');
+	const chk_xref = inpdf.indexOf("xref");
 
-  const maxSizeInBytes = 5 * 1024 * 1024;
-  const chk_maxSize = input_pdf.size > maxSizeInBytes ? 1 : -1;
+	const maxSizeInBytes = 5 * 1024 * 1024;
+	const chk_maxSize = input_pdf.size > maxSizeInBytes ? 1 : -1;
 
-  //if ([chk_sig, chk_acroform, chk_objstm, chk_stmxref].some(val => val !== -1)) {
-  if ([chk_sig, chk_acroform, chk_maxSize].some((val) => val !== -1)) {
-    return false;
-  }
-  if ([chk_xref, chk_trailer].some((val) => val === -1)) {
-    return false;
-  }
+	//if ([chk_sig, chk_acroform, chk_objstm, chk_stmxref].some(val => val !== -1)) {
+	if ([chk_sig, chk_acroform, chk_maxSize].some((val) => val !== -1)) {
+		return false;
+	}
+	if ([chk_xref, chk_trailer].some((val) => val === -1)) {
+		return false;
+	}
 
-  return true;
+	return true;
 }
 
-export async function save(pdfFile, objects, name) {
+/*export async function save(pdfFile, objects, name) {
   const PDFLib = await getAsset('PDFLib');
   const download = await getAsset('download');
 
@@ -172,13 +182,13 @@ export async function save(pdfFile, objects, name) {
     throw e;
   }
 }
-
+*/
 export async function pdfDownload(pdfFile, bunsyoName) {
-  const base64Data = await readAsDataURL(pdfFile);
-  const link = document.createElement('a');
-  link.href = base64Data;
-  link.download = bunsyoName + '.pdf';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+	const base64Data = await readAsDataURL(pdfFile);
+	const link = document.createElement("a");
+	link.href = base64Data;
+	link.download = bunsyoName + ".pdf";
+	document.body.appendChild(link);
+	link.click();
+	document.body.removeChild(link);
 }
