@@ -1,12 +1,12 @@
 <picture>
 <img src="/public/guide/image/inkanCloud_Logo4E2.png" width=400px>   
 </picture><br/>
-![Security](https://img.shields.io/snyk/vulnerabilities/github/mnakamur/oin-cloud-pub)<br/>
+
 # About oin-cloud.com?
 
 [JA](README-JA.md)
 
-
+![Security](https://img.shields.io/snyk/vulnerabilities/github/mnakamur/oin-cloud-pub)<br/>
 
 "oin-cloud(https://www.oin-cloud.com)" is a cloud-service allows you to send PDF documents to signers and add electronic signatures and timestamps.<br/>
 Additionally, you can add text inputs, stamp images, dates, and hand-drawn signatures before applying an electronic signature.
