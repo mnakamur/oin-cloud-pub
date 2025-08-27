@@ -1,7 +1,7 @@
 <picture>
 <img src="/public/guide/image/inkanCloud_Logo4E2.png" width=400px>   
 </picture><br/>
-
+![Snyk Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/mnakamur/oin-cloud-pub)
 # About oin-cloud.com?
 
 [JA](README-JA.md)
