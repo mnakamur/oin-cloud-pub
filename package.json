@@ -10,7 +10,7 @@
   "dependencies": {
     "@aws-amplify/ui-vue": "^4.0.2",
     "@aws-sdk/client-lambda": "^3.496.0",
-    "aws-amplify": "^6.0.13",
+    "aws-amplify": "^6.15.5",
     "encoding-japanese": "^2.0.0",
     "pdfjs-dist": "^4.6.82",
     "vue": "^3.3.4",
