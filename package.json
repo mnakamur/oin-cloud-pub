@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@aws-amplify/ui-vue": "^4.0.2",
+    "@aws-amplify/ui-vue": "^4.3.3",
     "@aws-sdk/client-lambda": "^3.496.0",
     "aws-amplify": "^6.0.13",
     "encoding-japanese": "^2.0.0",
