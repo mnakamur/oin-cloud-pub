@@ -13,7 +13,7 @@
     "aws-amplify": "^6.0.13",
     "encoding-japanese": "^2.0.0",
     "pdfjs-dist": "^4.6.82",
-    "vue": "^3.3.4",
+    "vue": "^3.5.18",
     "vue-i18n": "^9.14.4",
     "vue-router": "^4.2.5",
     "vuedraggable": "^2.24.3"
